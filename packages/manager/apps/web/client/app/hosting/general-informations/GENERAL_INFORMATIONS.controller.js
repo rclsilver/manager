@@ -17,6 +17,10 @@ export default class HostingGeneralInformationsCtrl {
     $translate,
     atInternet,
     Alerter,
+    boostLink,
+    localSEOLink,
+    multisiteLink,
+    runtimesLink,
     Hosting,
     hostingEmailService,
     HostingLocalSeo,
@@ -33,6 +37,10 @@ export default class HostingGeneralInformationsCtrl {
 
     this.atInternet = atInternet;
     this.Alerter = Alerter;
+    this.boostLink = boostLink;
+    this.localSEOLink = localSEOLink;
+    this.multisiteLink = multisiteLink;
+    this.runtimesLink = runtimesLink;
     this.Hosting = Hosting;
     this.hostingEmailService = hostingEmailService;
     this.HostingLocalSeo = HostingLocalSeo;
@@ -229,14 +237,6 @@ export default class HostingGeneralInformationsCtrl {
     });
   }
 
-  goToBoostTab() {
-    this.$scope.$parent.$ctrl.setSelectedTab('BOOST');
-  }
-
-  goToMultisiteTab() {
-    this.$scope.$parent.$ctrl.setSelectedTab('MULTISITE');
-  }
-
   goToPrivateSqlActivation() {
     return this.$state.go(
       'app.hosting.dashboard.database.private-sql-activation',
@@ -284,7 +284,6 @@ export default class HostingGeneralInformationsCtrl {
 
   goToMultisite() {
     this.sendTrackClick('web::hosting::configure-cdn');
-    this.goToMultisiteTab();
   }
 
   orderCdn() {
