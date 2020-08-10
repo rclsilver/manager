@@ -16,13 +16,13 @@ angular
       $scope,
       $stateParams,
       $translate,
+      atInternet,
       HostingDomain,
       Hosting,
       HostingRuntimes,
       Alerter,
       Domain,
-      User,
-      atInternet,
+      WucUser,
       $q,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites::modify-domain' });
@@ -133,7 +133,7 @@ angular
           .then((data) => {
             $scope.model.domains = data.existingDomains;
           })
-          .then(() => User.getUser())
+          .then(() => WucUser.getUser())
           .then((user) => {
             $scope.userInfos = user;
           })

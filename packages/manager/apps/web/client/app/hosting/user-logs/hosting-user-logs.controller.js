@@ -13,7 +13,7 @@ angular.module('App').controller(
       Alerter,
       constants,
       Hosting,
-      User,
+      WucUser,
     ) {
       this.$scope = $scope;
       this.$q = $q;
@@ -23,7 +23,7 @@ angular.module('App').controller(
       this.Alerter = Alerter;
       this.constants = constants;
       this.Hosting = Hosting;
-      this.User = User;
+      this.WucUser = WucUser;
     }
 
     $onInit() {
@@ -39,7 +39,7 @@ angular.module('App').controller(
         this.refreshTableUserLogs();
       });
 
-      this.User.getUrlOf('guides').then((guides) => {
+      this.WucUser.getUrlOf('guides').then((guides) => {
         this.guide = get(guides, 'hostingStatsLogs');
       });
 
