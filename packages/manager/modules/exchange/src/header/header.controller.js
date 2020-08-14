@@ -9,7 +9,7 @@ export default class HeaderController {
     $rootScope,
     $translate,
     constants,
-    Exchange,
+    wucExchange,
     exchangeHeader,
     exchangeServiceInfrastructure,
     messaging,
@@ -21,7 +21,7 @@ export default class HeaderController {
     this.$translate = $translate;
 
     this.constants = constants;
-    this.Exchange = Exchange;
+    this.wucExchange = wucExchange;
     this.exchangeHeader = exchangeHeader;
     this.exchangeServiceInfrastructure = exchangeServiceInfrastructure;
     this.messaging = messaging;
@@ -31,9 +31,9 @@ export default class HeaderController {
   }
 
   $onInit() {
-    this.$routerParams = this.Exchange.getParams();
+    this.$routerParams = this.wucExchange.getParams();
 
-    this.exchangeService = this.Exchange.value;
+    this.exchangeService = this.wucExchange.value;
     this.remoteDisplayName = this.exchangeService.displayName;
     this.displayNameToUpdate = this.remoteDisplayName;
     this.fetchingCanActivateSharepoint();
@@ -44,7 +44,8 @@ export default class HeaderController {
     const infrastructureAllowsSharepoint = this.exchangeServiceInfrastructure.isHosted();
     const subsidiaryAllowsSharepoint = this.constants.target === 'EU';
 
-    return this.Exchange.getSharepointService(this.exchangeService)
+    return this.wucExchange
+      .getSharepointService(this.exchangeService)
       .then((sharepoint) => {
         const isAlreadyActivated = sharepoint != null;
 
