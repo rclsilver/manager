@@ -200,7 +200,7 @@ export default class {
           1,
           'aliasTable',
         );
-        this.goToAliases();
+        this.goToAliases(account);
       }
     };
 
