@@ -33,6 +33,7 @@ export default class DomainTabGeneralInformationsCtrl {
     constants,
     dnsAvailableOptions,
     Domain,
+    emailObfuscationLink,
     enableWebhostingLink,
     Hosting,
     HostingDomain,
@@ -57,6 +58,7 @@ export default class DomainTabGeneralInformationsCtrl {
     this.WucAllDom = WucAllDom;
     this.dnsAvailableOptions = dnsAvailableOptions;
     this.Domain = Domain;
+    this.emailObfuscationLink = emailObfuscationLink;
     this.enableWebhostingLink = enableWebhostingLink;
     this.Hosting = Hosting;
     this.HostingDomain = HostingDomain;
