@@ -1,0 +1,271 @@
+<div>
+    <oui-message data-ng-if="$ctrl.successMessage" type="success"
+        aria-close-button-label="{{:: 'overTheBox_autoconfig_close' | translate}}" on-dismiss="$ctrl.onDismiss()"
+        dismissable>
+        <span data-ng-bind="$ctrl.successMessage"></span>
+    </oui-message>
+    <oui-message data-ng-if="$ctrl.errorMessage" type="error"
+        aria-close-button-label="{{:: 'overTheBox_autoconfig_close' | translate}}" on-dismiss="$ctrl.onDismiss()"
+        dismissable>
+        <span data-ng-bind="$ctrl.errorMessage"></span>
+    </oui-message>
+    <div class="oui-box oui-box_light">
+        <h4 class="oui-box__heading" data-translate="overTheBox_autoconfig_firewall_rules"></h4>
+
+        <div data-ng-if="$ctrl.rules.length === 0" class="mb-2">
+            <em data-translate="overTheBox_autoconfig_no_values"></em>
+        </div>
+
+        <div data-ng-if="$ctrl.showAddRule">
+            <form novalidate name="formRule">
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_source_zone' | translate}} *">
+                        <input class="oui-input" name="srcZone" required ng-model="$ctrl.rule.srcZone">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_target' | translate}} *">
+                        <input class="oui-input" name="target" required ng-model="$ctrl.rule.target">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_priority' | translate}} *">
+                        <input class="oui-input" name="priority" type="number" required
+                            ng-model="$ctrl.rule.priority">
+                    </oui-field>
+                </div>
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_dest_ip' | translate}}">
+                        <input class="oui-input" name="destIp" ng-model="$ctrl.rule.destIp">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_dest_port' | translate}}">
+                        <input class="oui-input" name="destPort" ng-model="$ctrl.rule.destPort">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_dest_zone' | translate}}">
+                        <input class="oui-input" name="destZone" ng-model="$ctrl.rule.destZone">
+                    </oui-field>
+                </div>
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_family' | translate}}">
+                        <input class="oui-input" name="family" ng-model="$ctrl.rule.family">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_rule_name' | translate}}">
+                        <input class="oui-input" name="name" ng-model="$ctrl.rule.name">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_protocol' | translate}}">
+                        <input class="oui-input" name="protocol" ng-model="$ctrl.rule.protocol">
+                    </oui-field>
+                </div>
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_source_ip' | translate}}">
+                        <input class="oui-input" name="srcIp" ng-model="$ctrl.rule.srcIp">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_source_port' | translate}}">
+                        <input class="oui-input" name="srcPort" ng-model="$ctrl.rule.srcPort">
+                    </oui-field>
+                    <oui-button class="ml-2 mb-2" data-variant="primary" data-type="submit"
+                        data-on-click="$ctrl.createRule()">
+                        <span data-translate="overTheBox_autoconfig_submit"></span>
+                    </oui-button>
+                    <oui-button class="ml-2 mb-2" data-variant="primary" data-on-click="$ctrl.cancelCreateRule()">
+                        <span data-translate="overTheBox_autoconfig_cancel"></span>
+                    </oui-button>
+                </div>
+            </form>
+        </div>
+
+        <oui-button data-variant="primary" data-on-click="$ctrl.addRule()" class="ml-2 mb-2 d-flex justify-content-center" data-ng-if="$ctrl.displayAddRuleButton">
+            <span data-translate="overTheBox_autoconfig_firewall_rule_add"></span>
+        </oui-button>
+
+        <oui-datagrid page-size="5" rows="$ctrl.rules" data-ng-if="$ctrl.rules.length > 0">
+            <oui-datagrid-column title="'overTheBox_autoconfig_firewall_source_zone' | translate" property="data.srcZone">
+            </oui-datagrid-column>
+            <oui-datagrid-column title="'overTheBox_autoconfig_firewall_target' | translate" property="data.target">
+            </oui-datagrid-column>
+            <oui-datagrid-column title="'overTheBox_autoconfig_priority' | translate" property="priority">
+            </oui-datagrid-column>
+            <oui-datagrid-column>
+                <oui-button variant="primary" size="s" on-click="$ctrl.removeRule($row)">
+                    <span class="oui-icon oui-icon-trash"></span>
+                </oui-button>
+            </oui-datagrid-column>
+            <oui-datagrid-row-detail>
+                <div class="d-flex justify-content-around">
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_dest_ip"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.destIp"></dd>
+                        <dd data-ng-bind="$row.data.destIp" data-ng-if="$row.data.destIp"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_dest_port"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.destPort"></dd>
+                        <dd data-ng-bind="$row.data.destPort" data-ng-if="$row.data.destPort"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_dest_zone"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.destZone"></dd>
+                        <dd data-ng-bind="$row.data.destZone" data-ng-if="$row.data.destZone"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_family"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.family"></dd>
+                        <dd data-ng-bind="$row.data.family" data-ng-if="$row.data.family"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_rule_name"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.name"></dd>
+                        <dd data-ng-bind="$row.data.name" data-ng-if="$row.data.name"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_protocol"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.proto"></dd>
+                        <dd data-ng-bind="$row.data.proto" data-ng-if="$row.data.proto"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_source_ip"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.srcIp"></dd>
+                        <dd data-ng-bind="$row.data.srcIp" data-ng-if="$row.data.srcIp"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_source_port"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.srcPort"></dd>
+                        <dd data-ng-bind="$row.data.srcPort" data-ng-if="$row.data.srcPort"></dd>
+                    </dl>
+                </div>
+            </oui-datagrid-row-detail>
+        </oui-datagrid>
+    </div>
+    <div class="oui-box oui-box_light mt-2">
+        <h4 class="oui-box__heading" data-translate="overTheBox_autoconfig_firewall_redirections"></h4>
+
+        <div data-ng-if="$ctrl.redirections.length === 0" class="mb-2">
+            <em data-translate="overTheBox_autoconfig_no_values"></em>
+        </div>
+
+        <div data-ng-if="$ctrl.showAddRedirect">
+            <form novalidate name="formRedirect">
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_redirect_name' | translate}} *">
+                        <input class="oui-input" name="name" required ng-model="$ctrl.redirect.name">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_priority' | translate}} *">
+                        <input class="oui-input" name="priority" type="number" required
+                            ng-model="$ctrl.redirect.priority">
+                    </oui-field>
+                </div>
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_dest_ip' | translate}}">
+                        <input class="oui-input" name="destIp" ng-model="$ctrl.redirect.destIp">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_dest_port' | translate}}">
+                        <input class="oui-input" name="destPort" ng-model="$ctrl.redirect.destPort">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_dest_zone' | translate}}">
+                        <input class="oui-input" name="destZone" ng-model="$ctrl.redirect.destZone">
+                    </oui-field>
+                </div>
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_protocol' | translate}}">
+                        <input class="oui-input" name="protocol" ng-model="$ctrl.redirect.protocol">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_source_dest_ip' | translate}}">
+                        <input class="oui-input" name="srcDestIp" ng-model="$ctrl.redirect.srcDestIp">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_source_dest_port' | translate}}">
+                        <input class="oui-input" name="srcDestPort" ng-model="$ctrl.redirect.srcDestPort">
+                    </oui-field>
+                </div>
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_source_ip' | translate}}">
+                        <input class="oui-input" name="srcIp" ng-model="$ctrl.redirect.srcIp">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_source_port' | translate}}">
+                        <input class="oui-input" name="srcPort" ng-model="$ctrl.redirect.srcPort">
+                    </oui-field>
+                    <oui-field class="ml-2" label="{{:: 'overTheBox_autoconfig_firewall_source_zone' | translate}}">
+                        <input class="oui-input" name="srcZone" ng-model="$ctrl.redirect.srcZone">
+                    </oui-field>
+                </div>
+                <div class="oui-input-group oui-input-group_inline d-flex">
+                    <oui-field label="{{:: 'overTheBox_autoconfig_firewall_target' | translate}}">
+                        <input class="oui-input" name="target" ng-model="$ctrl.redirect.target">
+                    </oui-field>
+                    <oui-button class="ml-2 mb-2" data-variant="primary" data-type="submit"
+                        data-on-click="$ctrl.createRedirect()">
+                        <span data-translate="overTheBox_autoconfig_submit"></span>
+                    </oui-button>
+                    <oui-button class="ml-2 mb-2" data-variant="primary" data-on-click="$ctrl.cancelCreateRedirect()">
+                        <span data-translate="overTheBox_autoconfig_cancel"></span>
+                    </oui-button>
+                </div>
+            </form>
+        </div>
+
+        <oui-button data-variant="primary" data-on-click="$ctrl.addRedirect()" class="ml-2 mb-2 d-flex justify-content-center" data-ng-if="$ctrl.displayAddRedirectButton">
+            <span data-translate="overTheBox_autoconfig_firewall_redirect_add"></span>
+        </oui-button>
+
+        <oui-datagrid page-size="5" rows="$ctrl.redirections" data-ng-if="$ctrl.redirections.length > 0">
+            <oui-datagrid-column title="'overTheBox_autoconfig_firewall_redirect_name' | translate" property="data.name">
+            </oui-datagrid-column>
+            <oui-datagrid-column title="'overTheBox_autoconfig_priority' | translate" property="priority">
+            </oui-datagrid-column>
+            <oui-datagrid-column>
+                <oui-button variant="primary" size="s" on-click="$ctrl.removeRedirect($row)">
+                    <span class="oui-icon oui-icon-trash"></span>
+                </oui-button>
+            </oui-datagrid-column>
+            <oui-datagrid-row-detail>
+                <div class="d-flex justify-content-around">
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_dest_ip"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.destIp"></dd>
+                        <dd data-ng-bind="$row.data.destIp" data-ng-if="$row.data.destIp"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_dest_port"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.destPort"></dd>
+                        <dd data-ng-bind="$row.data.destPort" data-ng-if="$row.data.destPort"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_dest_zone"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.destZone"></dd>
+                        <dd data-ng-bind="$row.data.destZone" data-ng-if="$row.data.destZone"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_protocol"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.proto"></dd>
+                        <dd data-ng-bind="$row.data.proto" data-ng-if="$row.data.proto"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_source_dest_ip"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.srcDestIp"></dd>
+                        <dd data-ng-bind="$row.data.srcDestIp" data-ng-if="$row.data.srcDestIp"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_source_dest_port"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.srcDestPort"></dd>
+                        <dd data-ng-bind="$row.data.srcDestPort" data-ng-if="$row.data.srcDestPort"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_source_ip"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.srcIp"></dd>
+                        <dd data-ng-bind="$row.data.srcIp" data-ng-if="$row.data.srcIp"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_source_port"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.srcPort"></dd>
+                        <dd data-ng-bind="$row.data.srcPort" data-ng-if="$row.data.srcPort"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_source_zone"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.srcZone"></dd>
+                        <dd data-ng-bind="$row.data.srcZone" data-ng-if="$row.data.srcZone"></dd>
+                    </dl>
+                    <dl class="oui-description">
+                        <dt data-translate="overTheBox_autoconfig_firewall_target"></dt>
+                        <dd data-translate="overTheBox_autoconfig_value_not_defined" data-ng-if="!$row.data.target"></dd>
+                        <dd data-ng-bind="$row.data.target" data-ng-if="$row.data.target"></dd>
+                    </dl>
+                </div>
+            </oui-datagrid-row-detail>
+        </oui-datagrid>
+    </div>
+</div>
