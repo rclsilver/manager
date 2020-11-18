@@ -17,6 +17,7 @@ class LicenseOrder {
   }
 
   getLicenseDurations(licenseInfo) {
+    console.log(this.licenseFeatureAvailability.allowLicenseAgoraOrder());
     if (!this.licenseFeatureAvailability.allowLicenseAgoraOrder()) {
       return this.License.orderDuration(licenseInfo);
     }
