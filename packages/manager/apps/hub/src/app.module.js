@@ -1,8 +1,8 @@
 import 'script-loader!moment/min/moment.min.js'; //eslint-disable-line
 
 import { Environment } from '@ovh-ux/manager-config';
-import 'angular-ui-bootstrap';
 import angular from 'angular';
+import 'angular-ui-bootstrap';
 import 'angular-animate';
 import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
@@ -27,7 +27,6 @@ import dashboard from './dashboard';
 
 import controller from './controller';
 import routing from './routing';
-import '@ovh-ux/ui-kit/dist/css/oui.css';
 import 'ovh-ui-kit-bs/dist/css/oui-bs3.css';
 import './index.less';
 import './index.scss';
