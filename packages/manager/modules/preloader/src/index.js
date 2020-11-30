@@ -28,7 +28,7 @@ const hasSwitchParameter = (search) =>
 const isManagerBaseUrl = (url) =>
   MANAGER_BASE_URLS.some((baseUrl) => url.startsWith(baseUrl));
 
-export const attach = (language = 'en') => {
+export const attach = (language = 'en', containerElement = document.body) => {
   const template = document.createElement('template');
 
   let messageSource = WELCOME_MESSAGES;
@@ -43,7 +43,7 @@ export const attach = (language = 'en') => {
     : messageSource.en;
   template.innerHTML = buildTemplate(false, message);
 
-  document.body.appendChild(document.importNode(template.content, true));
+  containerElement.appendChild(document.importNode(template.content, true));
 
   NProgress.configure({ parent: '#managerPreloader' });
   NProgress.start();
