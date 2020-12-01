@@ -9,6 +9,15 @@ function HamburgerMenu({ universe, universes }) {
   const [opened, setOpened] = useState(false);
   const { t } = useTranslation();
 
+  function toggleOpen() {
+    setOpened(!opened);
+    if (!opened) {
+      emit({
+        id: MESSAGES.navigationSidebarHide,
+      });
+    }
+  }
+
   function onUniverseClick({ event, destination }) {
     if (universe === destination) {
       event.preventDefault();
@@ -25,7 +34,7 @@ function HamburgerMenu({ universe, universes }) {
         role="button"
         type="button"
         className="oui-navbar-toggler oui-navbar-toggler_button"
-        onClick={() => setOpened(!opened)}
+        onClick={() => toggleOpen()}
         aria-expanded={opened}
       >
         <span className="oui-navbar-toggler__hamburger">

@@ -9,6 +9,7 @@ export const MESSAGES = {
   navbarSetUniverse: 'navbar.universe.set',
 
   navigationSidebarShow: 'navigation-sidebar.show',
+  navigationSidebarHide: 'navigation-sidebar.hide',
 
   notificationsCount: 'ovh.notifications.count',
   notificationsHide: 'ovh.notifications.hide',
