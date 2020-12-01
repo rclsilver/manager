@@ -45,7 +45,7 @@ export const attach = (language = 'en', containerElement = document.body) => {
 
   containerElement.appendChild(document.importNode(template.content, true));
 
-  NProgress.configure({ parent: '#managerPreloader' });
+  NProgress.configure({ parent: 'body' });
   NProgress.start();
 };
 
