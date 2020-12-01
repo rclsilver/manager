@@ -38,8 +38,10 @@ function NavbarAccount({ user }) {
       }}
       disabled={!sidebarReady}
     >
-      <i className="oui-icon oui-icon-user_extra-thin" aria-hidden="true"></i>
-      {`${firstName} ${lastName}`}
+      <span className="oui-navbar-link__wrapper oui-navbar-link__wrapper_border">
+        <i className="oui-icon oui-icon-user_extra-thin" aria-hidden="true"></i>
+        {`${firstName} ${lastName}`}
+      </span>
     </button>
   );
 }

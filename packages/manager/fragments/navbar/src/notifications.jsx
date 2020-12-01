@@ -32,7 +32,7 @@ function NavbarNotifications() {
       }}
     >
       <span className="oui-icon oui-icon-bell" aria-hidden="true">
-        {notificationsCount !== null && (
+        {notificationsCount > 0 && (
           <span className="oui-icon__badge">{notificationsCount}</span>
         )}
       </span>

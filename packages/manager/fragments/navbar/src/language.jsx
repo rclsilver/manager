@@ -13,6 +13,7 @@ function LanguageMenu({ i18next }) {
   return (
     <Dropdown alignRight>
       <Dropdown.Toggle
+        childBsPrefix="bs-ignore"
         className="oui-navbar-link oui-navbar-link_tertiary"
         aria-label={i18next.t('navbar_language_change')}
         title={i18next.t('navbar_language_change')}
