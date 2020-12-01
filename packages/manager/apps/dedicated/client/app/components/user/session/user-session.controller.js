@@ -1,6 +1,7 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
+import { emit } from '@ovh-ux/ufrontend/communication';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -19,6 +20,10 @@ angular.module('App').controller(
       this.$scope.$on('switchUniverse', (event, universe) => {
         this.sidebarNamespace = universe === 'server' ? undefined : 'hpc';
         this.navbarOptions.universe = universe;
+        emit({
+          id: 'navbar.universe.set',
+          universe,
+        });
       });
 
       this.currentLanguage = Environment.getUserLanguage();

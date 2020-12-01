@@ -33,11 +33,18 @@
                 </a>
             </div>
             <!-- /Skip to main content -->
+            <!--
             <ovh-manager-navbar
                 data-navbar-options="$ctrl.navbarOptions"
                 data-universe-click="$ctrl.openSidebar()"
             >
             </ovh-manager-navbar>
+            -->
+            <ovh-fragment
+                fragment-id="navbar"
+                fragment-version="1.0.0"
+                ng-non-bindable
+            ></ovh-fragment>
             <ovh-manager-account-sidebar me="$ctrl.user">
             </ovh-manager-account-sidebar>
             <ovh-manager-notifications-sidebar>
