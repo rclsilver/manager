@@ -1,7 +1,7 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
-import { emit } from '@ovh-ux/ufrontend/communication';
+import { emit, listen } from '@ovh-ux/ufrontend/communication';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -25,6 +25,15 @@ angular.module('App').controller(
           universe,
         });
       });
+
+      this.messageListeners = [
+        listen('navigation-sidebar.show', () => {
+          this.sidebarIsOpen = true;
+        }),
+        listen('navigation-sidebar.hide', () => {
+          this.sidebarIsOpen = false;
+        }),
+      ];
 
       this.currentLanguage = Environment.getUserLanguage();
       this.user = Environment.getUser();
@@ -72,6 +81,7 @@ angular.module('App').controller(
 
     $onDestroy() {
       this.hooksToUnsubscribe.forEach((hook) => hook());
+      this.messageListeners.forEach((forget) => forget());
     }
   },
 );

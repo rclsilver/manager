@@ -20,5 +20,9 @@ registerApplication().then(({ config, ufrontend }) => {
           rootScope.$emit('lang.onChange', { lang: locale });
         }
       });
+      ufrontend.emit({
+        id: 'navbar.universe.set',
+        universe: 'server',
+      });
     });
 });
