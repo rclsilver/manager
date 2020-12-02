@@ -40,18 +40,22 @@ export default class HostingEmailService {
   }
 
   createCart(ovhSubsidiary) {
+    console.log('createCart');
     return this.OrderService.createNewCart(ovhSubsidiary);
   }
 
   assignCart(cart) {
+    console.log('assignCart', cart);
     return this.OrderService.assignCart(cart.cartId).then(() => cart);
   }
 
   getEmailServiceOptions(cart, serviceName) {
+    console.log('getEmailServiceOptions', cart, serviceName);
     return this.OrderService.getProductServiceOptions(
       WEB_HOSTING_SERVICE_NAME,
       serviceName,
     ).then((options) => {
+      console.log('getEmailServiceOptions options', options);
       const option = filter(
         options,
         (optn) =>
@@ -64,11 +68,13 @@ export default class HostingEmailService {
             ),
           ),
       );
+      console.log('getEmailServiceOptions', option);
       return { cart, option: option[0] };
     });
   }
 
   addServiceOption(cart, serviceName, option) {
+    console.log('addServiceOption', cart, serviceName, option);
     const price = find(option.prices, ({ capacities }) =>
       includes(capacities, 'renew'),
     );
@@ -100,6 +106,7 @@ export default class HostingEmailService {
   }
 
   prepareCart(ovhSubsidiary, serviceName, domainName) {
+    console.log('prepare cart');
     return this.createCart(ovhSubsidiary)
       .then((cart) => this.assignCart(cart))
       .then((cart) => this.getEmailServiceOptions(cart, serviceName))
