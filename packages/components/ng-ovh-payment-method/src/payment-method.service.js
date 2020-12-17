@@ -1,4 +1,4 @@
-import { filter, find, has, map, remove, some } from 'lodash-es';
+import { find, has, map, remove, some } from 'lodash-es';
 
 import {
   DEFAULT_OPTIONS,
@@ -72,8 +72,17 @@ export default class OvhPaymentMethodService {
       .v6()
       .availableMethods()
       .$promise.then((paymentTypes) => {
-        const registerablePaymentTypes = filter(paymentTypes, {
-          registerable: true,
+        const registerablePaymentTypes = paymentTypes.map((paymentType) => {
+          if (
+            paymentType.paymentType === 'CREDIT_CARD' &&
+            paymentType.integration === 'REDIRECT'
+          ) {
+            // eslint-disable-next-line no-param-reassign
+            paymentType.integration = 'COMPONENT';
+            // eslint-disable-next-line no-param-reassign
+            paymentType.merchantId = 'test_D6ABJUCXGFHXPNTSHXW73KG3TABYOWTR';
+          }
+          return paymentType;
         });
 
         return map(
@@ -99,11 +108,9 @@ export default class OvhPaymentMethodService {
       })
       .then(({ legacyTypes, paymentMethodTypes }) => {
         remove(legacyTypes, ({ paymentType }) => {
-          const hasIdentical = some(paymentMethodTypes, (paymentMethodType) => {
-            const isSameValue = paymentMethodType.paymentType === paymentType;
-            return isSameValue;
+          return some(paymentMethodTypes, (paymentMethodType) => {
+            return paymentMethodType.paymentType === paymentType;
           });
-          return hasIdentical;
         });
 
         return [].concat(legacyTypes, paymentMethodTypes);
@@ -222,7 +229,7 @@ export default class OvhPaymentMethodService {
 
   /**
    *  Finalize given payment method registration
-   *  @param  {Object} paymentMethod The payment method to finalize
+   *  @param  {Object} paymentValidation The payment method to finalize
    *  @param  {Object} finalizeData  The data needed for finalizing the payment method registration
    *  @return {Promise}
    */
@@ -276,7 +283,7 @@ export default class OvhPaymentMethodService {
 
   /**
    *  Get the payment methods returned by /me/payment/method APIs
-   *  @param  {Obejct}  options           Options to get the payment methods
+   *  @param  {Object}  options           Options to get the payment methods
    *  @return {Promise}                   That returns an Array of OvhPaymentMethod
    */
   getPaymentMethods(options = DEFAULT_OPTIONS) {
@@ -303,7 +310,7 @@ export default class OvhPaymentMethodService {
   /**
    *  Get all payment methods, even the legacy one returned by /me/paymentMean/*
    *  and /me/paymentMethod APIs routes.
-   *  @param  {Obejct}  options           Options to get the payment methods
+   *  @param  {Object}  options           Options to get the payment methods
    *  @param  {Boolean} options.onlyValid Gets only valid payment methods
    *  @param  {Boolean} options.transform Flag telling if legacy payment methods needs to be
    *                                      transformed to new payment method object

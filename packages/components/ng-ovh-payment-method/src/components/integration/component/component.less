@@ -1,0 +1,51 @@
+@adyenInputTextColor: #4d5592; // p-800-text
+@adyenInputBorderColor: #bef1ff; // p-100
+@adyenInputHoverBorderColor: #0050d7; // p-500
+@adyenInputHoverBackgroundColor: #bef1ff; // p-100
+@adyenInputFocusBackgroundColor: #f5feff; // p-050
+@adyenInputErrorBackgroundColor: #f2f2f2; // g-100
+@adyenInputErrorBorderLightColor: #e0777c; // ae-400
+@adyenInputErrorBorderColor: #c11b1b; // ae-500
+
+// Styles to override default Adyen components
+#ovhPaymentMethodIntegrationComponen {
+  .js-iframe {
+    height: 20px !important;
+  }
+
+  .adyen-checkout__label__text {
+    color: @adyenInputTextColor;
+    font-weight: 700;
+
+    &.adyen-checkout__label__text--error {
+      color: @adyenInputErrorBorderColor;
+    }
+  }
+  .adyen-checkout__input {
+    color: @adyenInputTextColor;
+    border-color: @adyenInputBorderColor;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+
+    &:hover {
+      background-color: @adyenInputHoverBackgroundColor;
+      border-color: @adyenInputBorderColor @adyenInputBorderColor
+        @adyenInputHoverBorderColor;
+    }
+    &--focus {
+      background-color: @adyenInputFocusBackgroundColor;
+      border-color: @adyenInputBorderColor @adyenInputBorderColor
+        @adyenInputHoverBorderColor;
+    }
+
+    &.adyen-checkout__input--error {
+      border-color: @adyenInputErrorBorderLightColor
+        @adyenInputErrorBorderLightColor @adyenInputErrorBorderColor;
+      background-color: @adyenInputErrorBackgroundColor;
+    }
+  }
+  .adyen-checkout-input__inline-validation {
+    top: 35%;
+  }
+}

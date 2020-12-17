@@ -101,6 +101,7 @@ export default class OvhAvailablePaymentMethod {
    */
   isRequiringFinalization() {
     return [
+      TYPE_INTEGRATION_ENUM.COMPONENT,
       TYPE_INTEGRATION_ENUM.IFRAME_VANTIV,
       TYPE_INTEGRATION_ENUM.IN_CONTEXT,
     ].includes(this.integration);
