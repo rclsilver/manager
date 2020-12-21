@@ -13,11 +13,16 @@ export default /* @ngInject */ function EmailProCtrl(
   $location,
   $stateParams,
   $translate,
+<<<<<<< HEAD:packages/manager/modules/emailpro/src/dashboard/emailpro.controller.js
   accountLink,
   currentActiveLink,
   disclaimerLink,
   domainLink,
   externalContactLink,
+=======
+  atInternet,
+  navigation,
+>>>>>>> feat(web-cloud): add tracking to termination:packages/manager/modules/emailpro/src/emailpro.controller.js
   EmailPro,
   APIEmailPro,
   WucUser,
@@ -28,6 +33,13 @@ export default /* @ngInject */ function EmailProCtrl(
   EMAILPRO_CONFIG,
   coreConfig,
 ) {
+<<<<<<< HEAD:packages/manager/modules/emailpro/src/dashboard/emailpro.controller.js
+=======
+  this.getTabLink = getTabLink;
+  let initialLoad = true;
+
+  $scope.atInternet = atInternet;
+>>>>>>> feat(web-cloud): add tracking to termination:packages/manager/modules/emailpro/src/emailpro.controller.js
   $scope.currentRegionCA = coreConfig.isRegion('CA');
   $scope.accountTypeDedicated = EmailPro.accountTypeDedicated;
   $scope.accountTypeHosted = EmailPro.accountTypeHosted;
@@ -506,6 +518,18 @@ export default /* @ngInject */ function EmailProCtrl(
     } else {
       $scope.edit.active = false;
     }
+  };
+
+  $scope.removeEmailProDialog = function removeEmailProDialog(exchange) {
+    $scope.atInternet.trackClick({
+      name: 'web::email-pro::delete',
+      type: 'action',
+    });
+    $scope.atInternet.trackPage({
+      name: 'web::email-pro::delete',
+      type: 'navigation',
+    });
+    $scope.setAction('emailpro/remove/emailpro-remove', exchange);
   };
 
   $scope.getAutoRenewURL = () =>
