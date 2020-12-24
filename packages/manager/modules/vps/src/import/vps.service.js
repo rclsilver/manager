@@ -1487,4 +1487,12 @@ export default /* @ngInject */ function VpsService(
       renew: serviceInfo.renew,
     });
   };
+
+  this.hasDomain = function hasDomain(serviceName) {
+    return $http
+      .get(`/vps/${serviceName}/secondaryDnsDomains`)
+      .then(({ data }) => {
+        return data.length > 0;
+      });
+  };
 }

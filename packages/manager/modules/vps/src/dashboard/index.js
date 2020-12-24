@@ -1,6 +1,7 @@
 import angular from 'angular';
 import '@uirouter/angularjs';
 
+import ovhManagerUpSellCrossSell from '@ovh-ux/manager-up-sell-cross-sell';
 import component from './vps-dashboard.component';
 import routing from './vps-dashboard.routing';
 
@@ -29,6 +30,7 @@ const moduleName = 'ovhManagerVpsDashboard';
 
 angular
   .module(moduleName, [
+    ovhManagerUpSellCrossSell,
     ovhManagerVpsDashboardRebuild,
     ovhManagerVpsDashboardTerminate,
     ovhManagerVpsDashboardDisplayIps,

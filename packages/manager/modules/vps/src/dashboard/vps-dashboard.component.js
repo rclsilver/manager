@@ -19,6 +19,7 @@ export default {
     goToVpsMigration: '<',
     goBack: '<',
 
+    hasDomain: '<',
     hasBackupStorage: '<',
     canScheduleMigration: '<',
     isVpsNewRange: '<',

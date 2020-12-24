@@ -104,6 +104,8 @@ export default /* @ngInject */ ($stateProvider) => {
           params,
           options,
         ),
+      hasDomain: /* @ngInject */ (serviceName, VpsService) =>
+        VpsService.hasDomain(serviceName).then((res) => res),
     },
     views: {
       'vpsHeader@vps': {

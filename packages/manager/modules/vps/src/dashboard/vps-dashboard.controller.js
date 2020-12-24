@@ -5,10 +5,13 @@ import isArray from 'lodash/isArray';
 import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import 'moment';
+import { Environment } from '@ovh-ux/manager-config';
 
 import {
   DASHBOARD_FEATURES,
   VPS_2014_AUTO_MIGRATION_DATE,
+  VPS_NO_DOMAIN_TAG,
+  VPS_NO_DOMAIN_ADVICE_URL,
 } from './vps-dashboard.constants';
 import {
   CHANGE_OWNER_URL,
@@ -44,7 +47,8 @@ export default class {
     this.VpsService = VpsService;
     this.vpsUpgradeTile = vpsUpgradeTile;
     this.DASHBOARD_FEATURES = DASHBOARD_FEATURES;
-
+    this.VPS_NO_DOMAIN_TAG = VPS_NO_DOMAIN_TAG;
+    this.VPS_NO_DOMAIN_ADVICE_URL = VPS_NO_DOMAIN_ADVICE_URL;
     this.loaders = {
       disk: false,
       ip: false,
@@ -53,6 +57,9 @@ export default class {
   }
 
   $onInit() {
+    if (!this.hasDomain) {
+      this.advices = this.getAdvices();
+    }
     this.vps2014MigrationData = {
       autoMigrationDate: moment(
         VPS_2014_AUTO_MIGRATION_DATE,
@@ -479,5 +486,18 @@ export default class {
 
   static getActionStateParamString(params) {
     return params ? `(${JSON.stringify(params)})` : '';
+  }
+
+  getAdvices() {
+    this.language = Environment.getUserLanguage();
+    return [
+      {
+        localizedName: this.$translate.instant(
+          'server_advices_dedicated_advice1',
+        ),
+        href: this.VPS_NO_DOMAIN_ADVICE_URL[this.language.toUpperCase()],
+        tag: this.VPS_NO_DOMAIN_TAG,
+      },
+    ];
   }
 }
