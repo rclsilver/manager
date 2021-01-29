@@ -19,19 +19,25 @@ export default /* @ngInject */ ($stateProvider) => {
       cancel: /* @ngInject */ ($state) => () => $state.go('^'),
       confirm: /* @ngInject */ (
         $translate,
+        atInternet,
         displayErrorMessage,
         displaySuccessMessage,
         serviceName,
         vpsTerminate,
-      ) => () =>
-        vpsTerminate
+      ) => () => {
+        atInternet.trackClick({
+          name: 'vps::detail::dashboard::terminate::confirm',
+          type: 'action',
+        });
+        return vpsTerminate
           .confirm(serviceName)
           .then(() =>
             displaySuccessMessage($translate.instant('vps_terminate_success')),
           )
           .catch(() =>
             displayErrorMessage($translate.instant('vps_terminate_error')),
-          ),
+          );
+      },
       degressivityInformation: /* @ngInject */ (
         serviceName,
         availableUpgrades,
