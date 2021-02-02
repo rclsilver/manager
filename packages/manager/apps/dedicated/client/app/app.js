@@ -26,6 +26,7 @@ import ngQAllSettled from '@ovh-ux/ng-q-allsettled';
 import ngTailLogs from '@ovh-ux/ng-tail-logs';
 import ngTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 import ngUirouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
+import ngUiBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
 import ovhContacts from '@ovh-ux/ng-ovh-contacts';
 import ovhManagerAccountSidebar from '@ovh-ux/manager-account-sidebar';
 import ovhManagerAtInternetConfiguration from '@ovh-ux/manager-at-internet-configuration';
@@ -78,6 +79,7 @@ angular
     moduleName,
     [
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
+      ngUiBreadcrumb,
       account,
       ovhManagerAccountSidebar,
       ovhManagerCore,
