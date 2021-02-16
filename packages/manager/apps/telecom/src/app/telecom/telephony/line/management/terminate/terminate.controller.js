@@ -24,7 +24,7 @@ export default /* @ngInject */ function TelecomTelephonyLineTerminateCtrl(
 
   self.terminate = function terminate() {
     atInternet.trackClick({
-      name: 'telecom::telephony::billingAccount::line::terminate',
+      name: 'telecom::telephony::billingAccount::line::terminate::confirm',
       type: 'action',
     });
 
@@ -118,6 +118,11 @@ export default /* @ngInject */ function TelecomTelephonyLineTerminateCtrl(
   };
 
   self.getBulkParams = function getBulkParams() {
+    console.log('bulk terminate');
+    atInternet.trackPage({
+      name: 'telecom::telephony::billingAccount::line::terminate-bulk',
+      type: 'navigation',
+    });
     return {
       details: self.reason.details,
       reason: self.reason.id,
@@ -126,7 +131,7 @@ export default /* @ngInject */ function TelecomTelephonyLineTerminateCtrl(
 
   self.onBulkSuccess = function onBulkSuccess(bulkResult) {
     atInternet.trackClick({
-      name: 'telecom::telephony::billingAccount::line::terminate-bulk',
+      name: 'telecom::telephony::billingAccount::line::terminate-bulk::confirm',
       type: 'action',
     });
 

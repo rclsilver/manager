@@ -24,6 +24,7 @@ export default class {
     $scope,
     $state,
     $translate,
+    atInternet,
     coreConfig,
     CucCloudMessage,
     CucControllerHelper,
@@ -36,6 +37,7 @@ export default class {
     this.$scope = $scope;
     this.$state = $state;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.coreConfig = coreConfig;
     this.CucControllerHelper = CucControllerHelper;
     this.CucCloudMessage = CucCloudMessage;
@@ -443,7 +445,13 @@ export default class {
             isAvailable: () => !this.loaders.ip && !this.isMigrationInProgress,
           },
           terminate: {
-            callback: () => this.$state.go('vps.detail.dashboard.terminate'),
+            callback: () => {
+              this.atInternet.trackClick({
+                name: 'vps::detail::dashboard::terminate',
+                type: 'action',
+              });
+              return this.$state.go('vps.detail.dashboard.terminate');
+            },
           },
           terminateAdditionalDiskOption: {
             text: this.$translate.instant(

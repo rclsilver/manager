@@ -1,6 +1,7 @@
 import { TERMINATE_OPTIONS } from './vps-terminate.constants';
 
 export default class {
+  /* @ngInject */
   constructor(atInternet) {
     this.atInternet = atInternet;
   }
@@ -17,7 +18,7 @@ export default class {
 
   terminate() {
     this.atInternet.trackClick({
-      name: 'vps::detail::dashboard::terminate',
+      name: 'vps::detail::dashboard::terminate::confirm',
       type: 'action',
     });
     this.isTerminating = true;

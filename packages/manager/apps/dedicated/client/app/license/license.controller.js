@@ -5,6 +5,7 @@ import remove from 'lodash/remove';
 angular.module('Module.license').controller('LicenseCtrl', [
   '$scope',
   '$state',
+  'atInternet',
   'License',
   '$timeout',
   'constants',
@@ -23,7 +24,6 @@ angular.module('Module.license').controller('LicenseCtrl', [
     };
     $scope.filterType = null;
     $scope.$state = $state;
-
     /**
      * Search
      * @param  {String} type

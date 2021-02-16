@@ -38,10 +38,7 @@ export default /* @ngInject */ ($stateProvider) => {
             displayErrorMessage($translate.instant('vps_terminate_error')),
           );
       },
-      degressivityInformation: /* @ngInject */ (
-        serviceName,
-        availableUpgrades,
-      ) =>
+      degressivityInformation: /* @ngInject */ (availableUpgrades) =>
         availableUpgrades.find(({ prices }) =>
           prices[0].pricingMode.includes(PRICING_MODES.DEGRESSIVITY),
         ),

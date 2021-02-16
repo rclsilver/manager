@@ -1,9 +1,10 @@
 export default class DedicatedCloudTerminateCtrl {
   /* @ngInject */
-  constructor($http, $q, $translate, OvhApiDedicatedCloud) {
+  constructor($http, $q, $translate, atInternet, OvhApiDedicatedCloud) {
     this.$http = $http;
     this.$q = $q;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.OvhApiDedicatedCloud = OvhApiDedicatedCloud;
 
     this.loading = {
@@ -34,6 +35,10 @@ export default class DedicatedCloudTerminateCtrl {
     ============================== */
 
   onTerminateBtnClick() {
+    this.atInternet.trackClick({
+      name: 'dedicated::dedicatedClouds::dashboard::terminate',
+      type: 'action',
+    });
     this.loading.terminate = true;
     switch (this.model.termination.type) {
       case 'terminate':
