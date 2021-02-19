@@ -23,11 +23,10 @@ export default /* @ngInject */ ($stateProvider) => {
         service.cancelResiliation();
         return BillingAutoRenew.updateService(service);
       },
-      engagement: /* @ngInject */ (Server, service) =>
-        (service.canHaveEngagement()
-          ? Server.getSelected(service.serviceId)
-          : Promise.resolve({ engagement: null })
-        ).then(({ engagement }) => engagement),
+      engagement: /* @ngInject */ ($http, service) =>
+        $http
+          .get(`/services/${service.id}/billing/engagement`)
+          .then(({ data }) => data),
       hasEndRuleStrategies: /* @ngInject */ (engagement, endStrategies) =>
         engagement &&
         engagement.endRule &&

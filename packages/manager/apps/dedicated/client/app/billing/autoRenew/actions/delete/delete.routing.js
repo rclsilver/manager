@@ -4,19 +4,12 @@ import { BillingService } from '@ovh-ux/manager-models';
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.account.billing.autorenew.delete', {
     url: '/delete?serviceId&serviceType',
-    componentProvider: /* @ngInject */ (engagement) =>
-      engagement ? 'billingAutorenewDelete' : 'billingConfirmTermination',
+    component: 'billingConfirmTermination',
     resolve: {
       cancelResiliationUrl: /* @ngInject */ ($state, serviceId) =>
         $state.href('app.account.billing.autorenew.cancelResiliation', {
           serviceId,
         }),
-      engagement: /* @ngInject */ (Server, service) =>
-        (service.canHaveEngagement()
-          ? Server.getSelected(service.domain)
-          : Promise.resolve({ engagement: null })
-        ).then(({ engagement }) => engagement),
-
       goBack: /* @ngInject */ (
         $translate,
         cancelResiliationUrl,
@@ -40,9 +33,8 @@ export default /* @ngInject */ ($stateProvider) => {
               serviceId: service.id,
             }),
         ),
-      supportPhoneNumber: /* @ngInject */ (constants, currentUser) =>
-        constants.SUPPORT[currentUser.ovhSubsidiary],
       confirmTermination: /* @ngInject */ (
+        $q,
         atInternet,
         BillingAutoRenew,
         service,
@@ -54,6 +46,9 @@ export default /* @ngInject */ ($stateProvider) => {
           chapter2: 'account',
           chapter3: 'billing',
         });
+        // if (service.engagementDetails) {
+        //   return $q.when(0);
+        // }
         service.setForResiliation();
         return BillingAutoRenew.updateService({
           serviceId: service.domain,
