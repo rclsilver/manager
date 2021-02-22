@@ -7,6 +7,8 @@ export default class BillingPaymentMethodSplitPaymentActionCtrl {
   activateOrDeactivateSplitPayment() {
     this.isActioning = true;
 
+    this.trackClick();
+
     return this.action()
       .then(() =>
         this.goBack({
