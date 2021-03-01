@@ -65,7 +65,6 @@ import './components/user/user-session.service';
 import './components/user/user.controller';
 import './components/webApp.controller';
 
-import './config/config.bundle';
 import './configuration/configuration.bundle';
 import './domain/dashboard/domain.bundle';
 import './domain-operation/domain-operation.bundle';
