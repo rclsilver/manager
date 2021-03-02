@@ -1,4 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 import set from 'lodash/set';
 import controller from './dns-zone.controller';
 import template from './dns-zone.html';
@@ -13,9 +12,15 @@ export default /* @ngInject */ ($stateProvider) => {
     resolve: {
       capabilities: /* @ngInject */ (DNSZoneService, serviceName) =>
         DNSZoneService.getCapabilities(serviceName),
-      contactManagementLink: /* @ngInject */ (coreConfig, serviceName) =>
+      contactManagementLink: /* @ngInject */ (
+        coreConfig,
+        coreURLBuilder,
+        serviceName,
+      ) =>
         coreConfig.getRegion() === 'EU'
-          ? buildURL('dedicated', '#/contacts/services', { serviceName })
+          ? coreURLBuilder.buildURL('dedicated', '#/contacts/services', {
+              serviceName,
+            })
           : '',
       currentSection: () => 'zone',
       navigationInformations: /* @ngInject */ (

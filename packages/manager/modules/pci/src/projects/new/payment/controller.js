@@ -1,5 +1,3 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
 export default class PciProjectNewPaymentCtrl {
   /* @ngInject */
   constructor(
@@ -7,6 +5,7 @@ export default class PciProjectNewPaymentCtrl {
     $q,
     $window,
     coreConfig,
+    coreURLBuilder,
     CucCloudMessage,
     pciProjectNew,
     ovhPaymentMethod,
@@ -21,7 +20,7 @@ export default class PciProjectNewPaymentCtrl {
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
 
     // other attributes
-    this.paymentMethodUrl = buildURL(
+    this.paymentMethodUrl = coreURLBuilder.buildURL(
       'dedicated',
       '#/billing/payment/method/add',
     );

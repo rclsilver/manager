@@ -1,10 +1,12 @@
-import { buildURL } from '@ovh-ux/ufrontend/url-builder';
-
-export default /* @ngInject */ function(OvhApiMeBill, TucToastError) {
+export default /* @ngInject */ function(
+  coreURLBuilder,
+  OvhApiMeBill,
+  TucToastError,
+) {
   const self = this;
 
   self.links = {
-    billing: buildURL('dedicated', '#/billing/history'),
+    billing: coreURLBuilder.buildURL('dedicated', '#/billing/history'),
   };
   self.amountBillsDisplayed = 6;
 
