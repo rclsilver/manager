@@ -71,8 +71,19 @@ export default /* @ngInject */ ($stateProvider) => {
       },
 
       isValidHdsSupportLevel: () => {
-        const { supportLevel } = Environment.getUser();
+        const { supportLevel, nichandle } = Environment.getUser();
         const sl = new SupportLevel(supportLevel);
+
+        /**
+         * TODO: to remove
+         * Temporary usage for QA purposes
+         */
+        if (
+          nichandle === 'tech.ux.tests@interne.ovh.net' ||
+          nichandle === 'sl311674-ovh'
+        ) {
+          return true;
+        }
         return sl.isEnterprise() || sl.isBusiness();
       },
 
