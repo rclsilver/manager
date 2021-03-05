@@ -73,7 +73,10 @@ module.exports = (env = {}) => {
         ],
       },
     },
-    env,
+    {
+      ...env,
+      local2API: false,
+    },
   );
 
   config.plugins.push(

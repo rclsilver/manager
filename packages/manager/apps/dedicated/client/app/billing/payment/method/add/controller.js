@@ -2,22 +2,28 @@ import get from 'lodash/get';
 import isFunction from 'lodash/isFunction';
 import set from 'lodash/set';
 
+import { Environment } from '@ovh-ux/manager-config';
+
 import { CREDITCARD_FOOTPRINT_AMOUNT } from './constants';
 
 export default class BillingPaymentMethodAddCtrl {
   /* @ngInject */
   constructor(
+    $timeout,
     $translate,
     Alerter,
     ovhContacts,
     ovhPaymentMethod,
+    ovhPaymentMethodHelper,
     OVH_PAYMENT_METHOD_TYPE,
     OVH_PAYMENT_METHOD_INTEGRATION_TYPE,
   ) {
+    this.$timeout = $timeout;
     this.$translate = $translate;
     this.Alerter = Alerter;
     this.ovhContacts = ovhContacts;
     this.ovhPaymentMethod = ovhPaymentMethod;
+    this.ovhPaymentMethodHelper = ovhPaymentMethodHelper;
     this.OVH_PAYMENT_METHOD_TYPE = OVH_PAYMENT_METHOD_TYPE;
     this.OVH_PAYMENT_METHOD_INTEGRATION_TYPE = OVH_PAYMENT_METHOD_INTEGRATION_TYPE;
 
@@ -33,7 +39,18 @@ export default class BillingPaymentMethodAddCtrl {
   }
 
   initializeStepper() {
-    this.componentInitialParams = null;
+    this.integrationInitialParams = null;
+  }
+
+  initializeIntegrationInitialParams() {
+    this.integrationInitialParams = {
+      companyNationalIdentificationNumber:
+        Environment.getUser().companyNationalIdentificationNumber ||
+        21130007400013,
+      handleResponseObject: {
+        requiredFields: ['customer_service_code'],
+      },
+    };
   }
 
   /* ================================
@@ -52,12 +69,12 @@ export default class BillingPaymentMethodAddCtrl {
     return initialParams;
   }
 
-  onPaymentMethodIntegrationSubmit(componentAdditionalParams = {}) {
+  onPaymentMethodIntegrationSubmit(integrationAdditionalParams = {}) {
     const postParams = {
-      default: this.model.setAsDefault,
-      ...(this.model.selectedPaymentMethodType.isHandleByComponent()
-        ? componentAdditionalParams
-        : {}),
+      default: this.model.selectedPaymentMethodType.type.isAdministrativeMandate()
+        ? false
+        : this.model.setAsDefault,
+      ...integrationAdditionalParams,
     };
 
     if (this.model.selectedPaymentMethodType.isRequiringContactId()) {
@@ -89,13 +106,38 @@ export default class BillingPaymentMethodAddCtrl {
     return postParams;
   }
 
+  onHandleResponse(handleResponseObject) {
+    this.integrationInitialParams.handleResponseObject = {
+      ...this.integrationInitialParams.handleResponseObject,
+      ...handleResponseObject,
+    };
+
+    this.currentIndex = this.addSteps.paymentMethodIntegration.getPosition();
+  }
+
   onPaymentMethodIntegrationSubmitError(error) {
+    const handleResponseObject = this.ovhPaymentMethodHelper.constructor.handleResponse(
+      this.model.selectedPaymentMethodType,
+      error,
+    );
+
+    if (handleResponseObject) {
+      this.onHandleResponse(handleResponseObject);
+    }
+
     this.Alerter.error(
       this.$translate.instant('billing_payment_method_add_error', {
         errorMessage: get(error, 'data.message'),
       }),
       'billing_payment_method_add_alert',
     );
+
+    this.$timeout(() => {
+      document.getElementById('errorMessage').scrollIntoView();
+    });
+    // document
+    //   .getElementById('paymentMethodPage')
+    //   .scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   onPaymentMethodIntegrationSuccess(paymentMethod) {
@@ -107,7 +149,7 @@ export default class BillingPaymentMethodAddCtrl {
 
   onPaymentMethodAddStepperFinish() {
     if (this.model.selectedPaymentMethodType.isHandleByComponent()) {
-      this.componentInitialParams = this.onPaymentMethodIntegrationInitialized(
+      this.integrationInitialParams = this.onPaymentMethodIntegrationInitialized(
         null,
         {
           paymentMethod: this.model.selectedPaymentMethodType,
