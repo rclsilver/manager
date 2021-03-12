@@ -105,6 +105,7 @@ angular
     /* @ngInject */ ($state) => {
       $state.defaultErrorHandler((error) => {
         if (error.type === RejectType.ERROR) {
+          console.log(error);
           $state.go(
             'error',
             {
