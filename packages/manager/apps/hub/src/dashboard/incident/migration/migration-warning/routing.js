@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dashboard.incident.confirm', {
+  $stateProvider.state('app.dashboard.incident.migration.confirm', {
     url: '/confirm',
     params: {
       servicesIds: [],

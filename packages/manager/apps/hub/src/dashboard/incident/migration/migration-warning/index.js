@@ -6,7 +6,7 @@ const moduleName = 'ovhManagerHubIncidentMigrationConfirmLazyLoading';
 
 angular.module(moduleName, ['ui.router', 'oc.lazyLoad']).config(
   /* @ngInject */ ($stateProvider) => {
-    $stateProvider.state('app.dashboard.incident.confirm.**', {
+    $stateProvider.state('app.dashboard.incident.migration.confirm.**', {
       url: '/confirm',
       lazyLoad: ($transition$) => {
         const $ocLazyLoad = $transition$.injector().get('$ocLazyLoad');

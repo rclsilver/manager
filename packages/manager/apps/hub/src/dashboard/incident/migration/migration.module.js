@@ -4,7 +4,7 @@ import '@ovh-ux/ui-kit';
 import uiRouter from '@uirouter/angularjs';
 import ngOvhTranslateAsyncLoader from '@ovh-ux/ng-translate-async-loader';
 
-import component from './incident.component';
+import component from './migration.component';
 import routing from './routing';
 
 import contractsModule from './contracts';

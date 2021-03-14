@@ -1,4 +1,4 @@
-import controller from './incident.controller';
+import controller from './migration.controller';
 import template from './template.html';
 
 export default {

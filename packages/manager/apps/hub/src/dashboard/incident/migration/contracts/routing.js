@@ -1,5 +1,5 @@
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dashboard.incident.contracts', {
+  $stateProvider.state('app.dashboard.incident.migration.contracts', {
     url: '/contracts',
     layout: 'modal',
     params: {
@@ -39,7 +39,8 @@ export default /* @ngInject */ ($stateProvider) => {
         impactedServices.find(
           ({ serviceToMigrate }) =>
             serviceToMigrate.serviceId === servicesIds[0],
-        )?.serviceToMigrate?.url || $state.href('app.dashboard.incident'),
+        )?.serviceToMigrate?.url ||
+        $state.href('app.dashboard.incident.migration'),
 
       redirectToServiceDashboard: /* @ngInject */ (
         $window,

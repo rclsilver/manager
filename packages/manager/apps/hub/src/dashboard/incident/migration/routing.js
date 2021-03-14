@@ -10,8 +10,8 @@ import {
 } from './Offer.utils';
 
 export default /* @ngInject */ ($stateProvider) => {
-  $stateProvider.state('app.dashboard.incident', {
-    url: 'incident/:incidentName',
+  $stateProvider.state('app.dashboard.incident.migration', {
+    url: '/migration',
     component: 'hubIncidentMigration',
     redirectTo: (transition) =>
       transition
@@ -26,18 +26,18 @@ export default /* @ngInject */ ($stateProvider) => {
       goToIncident: /* @ngInject */ ($state, $transition$) => (
         reload = false,
       ) =>
-        $state.go('app.dashboard.incident', $transition$.params, {
+        $state.go('app.dashboard.incident.migration', $transition$.params, {
           reload,
         }),
       goToContracts: /* @ngInject */ ($state, $transition$) => (servicesIds) =>
-        $state.go('app.dashboard.incident.contracts', {
+        $state.go('app.dashboard.incident.migration.contracts', {
           ...$transition$.params(),
           servicesIds,
         }),
       confirmMigration: /* @ngInject */ ($state, $transition$) => (
         servicesIds,
       ) =>
-        $state.go('app.dashboard.incident.confirm', {
+        $state.go('app.dashboard.incident.migration.confirm', {
           ...$transition$.params(),
           servicesIds,
         }),
