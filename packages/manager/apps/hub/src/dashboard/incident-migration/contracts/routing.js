@@ -1,10 +1,12 @@
 export default /* @ngInject */ ($stateProvider) => {
   $stateProvider.state('app.dashboard.incident.contracts', {
     url: '/contracts',
-    params: {
-      servicesIds: [],
-    },
     layout: 'modal',
+    params: {
+      servicesIds: {
+        value: '[]',
+      },
+    },
     views: {
       modal: {
         component: 'hubIncidentMigrationContracts',
@@ -18,13 +20,13 @@ export default /* @ngInject */ ($stateProvider) => {
         servicesIds.length === impactedServices.length,
 
       selectedServices: /* @ngInject */ (migrateServices, servicesIds) =>
-        migrateServices(true, servicesIds).then((data) => data),
+        migrateServices(true, servicesIds).then(({ data }) => data),
 
       servicesIds: /* @ngInject */ ($transition$) =>
         $transition$.params().servicesIds,
 
       contracts: /* @ngInject */ (selectedServices) =>
-        selectedServices.contracts,
+        selectedServices.order.contracts,
 
       openOrderUrl: /* @ngInject */ ($window, selectedServices) => () =>
         $window.open(selectedServices.url, '_blank'),
