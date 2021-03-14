@@ -1,7 +1,8 @@
 export default class IncidentMigrationContractController {
   /* @ngInject */
-  constructor(atInternet) {
+  constructor(atInternet, $q) {
     this.atInternet = atInternet;
+    this.$q = $q;
   }
 
   $onInit() {
@@ -20,13 +21,16 @@ export default class IncidentMigrationContractController {
       this.contractIndex += 1;
       this.contractToValidate = this.getCurrentContract(this.contractIndex);
       this.agree = false;
-    } else {
-      this.handleRedirect();
+      return this.$q.when();
     }
+    this.isLoading = true;
+    return this.migrateServices(false, this.servicesIds).then(({ order }) =>
+      this.handleRedirect(order),
+    );
   }
 
-  handleRedirect() {
-    this.openOrderUrl();
+  handleRedirect(order) {
+    this.openOrderUrl(order.url);
 
     if (this.servicesIds.length === 1) {
       return this.redirectToServiceDashboard();

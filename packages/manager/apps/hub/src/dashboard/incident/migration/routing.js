@@ -87,10 +87,12 @@ export default /* @ngInject */ ($stateProvider) => {
         dryRun,
         serviceIds,
       ) =>
-        $http.post(`/me/incident/${incidentName}/migrateServices`, {
-          dryRun: true,
-          serviceIds,
-        }),
+        $http
+          .post(`/me/incident/${incidentName}/migrateServices`, {
+            dryRun: true,
+            serviceIds,
+          })
+          .then(({ data }) => data),
       hideBreadcrumb: /* @ngInject */ () => true,
     },
     atInternet: {

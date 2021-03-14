@@ -20,7 +20,7 @@ export default /* @ngInject */ ($stateProvider) => {
         servicesIds.length === impactedServices.length,
 
       selectedServices: /* @ngInject */ (migrateServices, servicesIds) =>
-        migrateServices(true, servicesIds).then(({ data }) => data),
+        migrateServices(true, servicesIds),
 
       servicesIds: /* @ngInject */ ($transition$) =>
         $transition$.params().servicesIds,
@@ -28,8 +28,8 @@ export default /* @ngInject */ ($stateProvider) => {
       contracts: /* @ngInject */ (selectedServices) =>
         selectedServices.order.contracts,
 
-      openOrderUrl: /* @ngInject */ ($window, selectedServices) => () =>
-        $window.open(selectedServices.url, '_blank'),
+      openOrderUrl: /* @ngInject */ ($window) => (url) =>
+        $window.open(url, '_blank'),
 
       getServiceDashboardUrl: /* @ngInject */ (
         $state,

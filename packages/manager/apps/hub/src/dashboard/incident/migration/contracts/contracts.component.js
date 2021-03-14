@@ -9,6 +9,7 @@ export default {
     isAllServicesToMigrate: '<',
     openOrderUrl: '<',
     redirectToServiceDashboard: '<',
+    migrateServices: '<',
     servicesIds: '<',
     trackingPrefix: '<',
   },
