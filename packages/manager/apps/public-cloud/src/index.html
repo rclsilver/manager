@@ -21,6 +21,9 @@
             data-ng-controller="PublicCloudController as $ctrl"
         >
             <div>
+                <ovh-manager-incident-migration-banner
+                    incident="sbg"
+                ></ovh-manager-incident-migration-banner>
                 <ovh-manager-navbar
                     data-navbar-options="$ctrl.navbarOptions"
                     data-universe-click="$ctrl.openSidebar()"
