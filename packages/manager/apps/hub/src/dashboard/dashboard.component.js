@@ -9,6 +9,8 @@ export default {
     expand: '<',
     expandProducts: '<',
     goToProductPage: '<',
+    incidentImpactedService: '<',
+    incidentStatusLink: '<',
     notifications: '<',
     order: '<',
     products: '<',

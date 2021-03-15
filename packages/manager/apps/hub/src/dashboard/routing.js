@@ -1,4 +1,5 @@
 import { filter, get, groupBy, map, reverse, sortBy } from 'lodash-es';
+import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
   $stateProvider.state('app.dashboard', {
@@ -56,6 +57,14 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       hideBreadcrumb: () => true,
       breadcrumb: /* @ngInject */ ($translate) =>
         $translate.instant('manager_hub_dashboard'),
+      incidentImpactedService: /* @ngInject */ ($http) =>
+        $http
+          .get('/incident-status', {
+            serviceType: 'aapi',
+          })
+          .then(({ data }) => data)
+          .catch(() => []),
+      incidentStatusLink: () => buildURL('hub', '#/incident/SBG/status'),
     },
     componentProvider: /* @ngInject */ (order, services) =>
       get(services, 'data.count') === 0 && !order
