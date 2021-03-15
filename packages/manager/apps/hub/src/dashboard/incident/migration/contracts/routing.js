@@ -50,7 +50,7 @@ export default /* @ngInject */ ($stateProvider) => {
       hideBreadcrumb: () => true,
     },
     atInternet: {
-      rename: 'hub::service-replacement::contract-validation',
+      rename: 'service-replacement::contract-validation',
     },
   });
 };

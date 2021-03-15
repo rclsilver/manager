@@ -96,7 +96,7 @@ export default /* @ngInject */ ($stateProvider) => {
       hideBreadcrumb: /* @ngInject */ () => true,
     },
     atInternet: {
-      rename: 'hub::service-replacement',
+      rename: 'service-replacement',
     },
   });
 };
