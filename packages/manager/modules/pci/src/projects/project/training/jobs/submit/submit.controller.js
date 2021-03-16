@@ -1,5 +1,4 @@
 import get from 'lodash/get';
-import remove from 'lodash/remove';
 import { nameGenerator } from '../../../data-processing/data-processing.utils';
 import { COMMUNITY_URL } from '../../training.constants';
 
@@ -19,17 +18,45 @@ export default class PciTrainingJobsSubmitController {
     this.atInternet = atInternet;
   }
 
+  addHttpHeader() {
+    this.httpHeader.push({
+      added: false,
+      model: {},
+    });
+  }
+
+  onHttpHeaderAddBtnClick(index) {
+    this.httpHeader[index].added = true;
+    this.job.volumes.push({
+      region: this.httpHeader[index].model.container.region,
+      container: this.httpHeader[index].model.container.name,
+      mountPath: this.httpHeader[index].model.mountPath,
+      permission: this.httpHeader[index].model.permission,
+    });
+    this.addHttpHeader();
+  }
+
+  onHttpHeaderDeleteBtnClick(index) {
+    this.httpHeader.splice(index, 1);
+    this.job.volumes.splice(index, 1);
+    this.filterContainers();
+    this.validateVolume();
+  }
+
   $onInit() {
+    this.httpHeader = [];
     this.volumesPermissions = ['RO', 'RW'];
     this.communityUrl = COMMUNITY_URL;
     // Form payload
     this.job = {
+      validVolume: null,
       region: null,
       name: null,
       image: {
         id: null,
       },
       command: null,
+      valid: true,
       volumes: [],
       resources: {
         gpu: 1,
@@ -41,6 +68,7 @@ export default class PciTrainingJobsSubmitController {
     this.showAdvancedImage = false;
     this.emptyData = this.containers.length === 0;
     this.filterContainers();
+    this.addHttpHeader();
   }
 
   filterContainers() {
@@ -62,40 +90,17 @@ export default class PciTrainingJobsSubmitController {
       });
   }
 
-  onAddVolume(form) {
-    const volume = {
-      region: form.container.$viewValue.region,
-      container: form.container.$viewValue.name,
-      mountPath: form.mountPath.$viewValue,
-      permission: form.permission.$viewValue,
-    };
-
-    this.job.volumes.push(volume);
-    this.filterContainers();
-  }
-
-  // Dirty hack to validate the oui-inline-adder form
-  // eslint-disable-next-line class-methods-use-this
-  forceSubmitContainer(form) {
-    form.$$controls.forEach((innerForm) => {
-      // eslint-disable-next-line no-param-reassign
-      innerForm.$error = {};
-      innerForm.$setPristine();
-    });
-    // eslint-disable-next-line no-param-reassign
-    form.$valid = true;
-
-    return true;
-  }
-
-  onRemoveVolume(form) {
-    const container = form.container.$viewValue;
-    remove(
-      this.job.volumes,
-      (vol) =>
-        vol.region === container.region && vol.container === container.name,
+  validateVolume() {
+    this.job.validVolume = true;
+    this.job.validVolume = !this.httpHeader.some(
+      (volume) =>
+        !volume.added &&
+        volume.model.container &&
+        volume.model.container.description &&
+        volume.model.container.name &&
+        volume.model.container.region,
     );
-    this.filterContainers();
+    return this.job.validVolume;
   }
 
   cliCommand() {
