@@ -24,6 +24,7 @@ angular.module('services').service('User', [
             .all({
               me: Environment.getUser(),
               certificates: this.getUserCertificates(),
+              tags: this.getUserTags(),
             })
             .then((result) => {
               userPromiseRunning = false;
@@ -38,6 +39,7 @@ angular.module('services').service('User', [
                     customerCode: result.me.customerCode,
                   },
                   result.certificates,
+                  result.tags,
                 );
               }
             }),
@@ -187,6 +189,12 @@ angular.module('services').service('User', [
 
     this.getUserCertificates = function getUserCertificates() {
       return OvhHttp.get('/me/certificates', {
+        rootPath: 'apiv6',
+      });
+    };
+
+    this.getUserTags = function getUserTags() {
+      return OvhHttp.get('/me/tag', {
         rootPath: 'apiv6',
       });
     };

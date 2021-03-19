@@ -9,9 +9,7 @@ export default class {
   }
 
   getUser() {
-    return this.$q.resolve(
-      new User(Environment.getUser(), Environment.getUser().certificates),
-    );
+    return this.$q.resolve(new User(Environment.getUser()));
   }
 
   getSupportLevel() {

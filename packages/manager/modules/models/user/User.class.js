@@ -2,17 +2,19 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 
 import Certificate from '../certificate/Certificate.class';
+import Tag from '../tag/Tag.class';
 
 import { AUTORENEW_2016_SUBSIDIARIES } from './user.constants';
 
 export default class User {
-  constructor(user, certificates) {
+  constructor(user, certificates, tags) {
     Object.assign(this, {
       ...user,
       certificates: map(
-        certificates,
+        certificates || user.certificates,
         (certificate) => new Certificate(certificate),
       ),
+      tags: map(tags || user.tags, (tag) => new Tag(tag)),
     });
   }
 
@@ -22,6 +24,10 @@ export default class User {
 
   get isEnterprise() {
     return some(this.certificates, (certificate) => certificate.isEnterprise());
+  }
+
+  get isTrusted() {
+    return some(this.tags, (tag) => tag.isTrusted());
   }
 
   get isVATNeeded() {

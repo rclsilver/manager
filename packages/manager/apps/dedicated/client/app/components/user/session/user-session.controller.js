@@ -1,6 +1,7 @@
 import isString from 'lodash/isString';
 import set from 'lodash/set';
 import { Environment } from '@ovh-ux/manager-config';
+import { User } from '@ovh-ux/manager-models';
 
 angular.module('App').controller(
   'SessionCtrl',
@@ -33,7 +34,7 @@ angular.module('App').controller(
       });
 
       this.currentLanguage = Environment.getUserLanguage();
-      this.user = Environment.getUser();
+      this.user = new User(Environment.getUser());
       const unregisterListener = this.$scope.$on('app:started', () => {
         const CHATBOT_FEATURE = 'chatbot';
         this.ovhFeatureFlipping

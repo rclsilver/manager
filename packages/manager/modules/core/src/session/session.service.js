@@ -18,6 +18,7 @@ export default class SessionService {
           billingCountry: user.country,
         },
         user.certificates,
+        user.tags,
       ),
     );
   }

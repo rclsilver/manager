@@ -62,8 +62,8 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
       debt: /* @ngInject */ (hub) => hub.debt,
       catalog: /* @ngInject */ (hub) => hub.catalog,
       certificates: /* @ngInject */ (hub) => hub.certificates.data,
-      me: /* @ngInject */ (certificates, hub) =>
-        new User(hub.me.data, certificates),
+      me: /* @ngInject */ (certificates, hub, tags) =>
+        new User(hub.me.data, certificates, tags),
       notifications: /* @ngInject */ ($translate, hub) =>
         map(
           filter(hub.notifications.data, (notification) =>
@@ -103,6 +103,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             serviceType: 'aapi',
           })
           .then(({ data }) => parseErrors(data)),
+      tags: /* @ngInject */ (hub) => hub.tags.data,
     },
   });
 
