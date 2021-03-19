@@ -5,12 +5,21 @@ import isString from 'lodash/isString';
 angular.module('App').controller(
   'configurationCtrl',
   class ConfigurationCtrl {
-    constructor($q, $translate, constants, coreConfig, OvhHttp, User) {
+    constructor(
+      $q,
+      $translate,
+      constants,
+      coreConfig,
+      OvhHttp,
+      ovhFeatureFlipping,
+      User,
+    ) {
       this.$q = $q;
       this.$translate = $translate;
       this.constants = constants;
       this.coreConfig = coreConfig;
       this.OvhHttp = OvhHttp;
+      this.ovhFeatureFlipping = ovhFeatureFlipping;
       this.User = User;
     }
 
@@ -21,7 +30,9 @@ angular.module('App').controller(
         this.constants.TOP_GUIDES.all,
       );
 
-      return this.buildingGuideURLs().then(() => this.gettingHelpCenterURLs());
+      return this.getUser()
+        .then(() => this.buildingGuideURLs())
+        .then(() => this.gettingHelpCenterURLs());
     }
 
     getURLFromSection(section) {
@@ -32,20 +43,22 @@ angular.module('App').controller(
     }
 
     buildingGuideURLs() {
-      return this.fetchingGuideSectionNames().then((sectionNames) => {
-        this.sections = sectionNames.reduce(
-          (sections, sectionName) => ({
-            ...sections,
-            [sectionName]: {
-              name: sectionName,
-              links: this.getURLFromSection(
-                this.constants.TOP_GUIDES[sectionName],
-              ),
-            },
-          }),
-          {},
-        );
-      });
+      return this.fetchingGuideSectionNames()
+        .then((sections) => this.getAvailableSections(sections))
+        .then((sectionNames) => {
+          this.sections = sectionNames.reduce(
+            (sections, sectionName) => ({
+              ...sections,
+              [sectionName]: {
+                name: sectionName,
+                links: this.getURLFromSection(
+                  this.constants.TOP_GUIDES[sectionName],
+                ),
+              },
+            }),
+            {},
+          );
+        });
     }
 
     fetchingGuideSectionNames() {
@@ -67,18 +80,39 @@ angular.module('App').controller(
       return this.$q.when(sectionNames);
     }
 
-    gettingHelpCenterURLs() {
-      return this.User.getUser().then(({ ovhSubsidiary: subsidiary }) => {
-        this.subsidiary = subsidiary;
-
-        this.helpCenterURLs = Object.keys(this.constants.urls).reduce(
-          (helpCenterURLs, subsidiaryName) => ({
-            ...helpCenterURLs,
-            [subsidiaryName]: this.constants.urls[subsidiaryName].support,
-          }),
-          {},
+    getAvailableSections(sections) {
+      return this.ovhFeatureFlipping
+        .checkFeatureAvailability(
+          sections.map(
+            (section) => this.constants.SECTION_AVAILABILITY[section],
+          ),
+        )
+        .then((featureAvailability) =>
+          sections.filter((section) =>
+            featureAvailability.isFeatureAvailable(
+              this.constants.SECTION_AVAILABILITY[section],
+            ),
+          ),
         );
+    }
+
+    getUser() {
+      return this.User.getUser().then((user) => {
+        this.user = user;
+        return this.user;
       });
+    }
+
+    gettingHelpCenterURLs() {
+      this.subsidiary = this.user.ovhSubsidiary;
+
+      this.helpCenterURLs = Object.keys(this.constants.urls).reduce(
+        (helpCenterURLs, subsidiaryName) => ({
+          ...helpCenterURLs,
+          [subsidiaryName]: this.constants.urls[subsidiaryName].support,
+        }),
+        {},
+      );
     }
   },
 );

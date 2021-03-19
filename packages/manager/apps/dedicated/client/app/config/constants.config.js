@@ -778,6 +778,10 @@ const constants = {
       PL: '71 750 02 00',
       PT: '+351 213 155 642',
     },
+    SECTION_AVAILABILITY: {
+      sd: 'dedicated-server',
+      pcc: 'hosted-private-cloud',
+    },
   },
   CA: {
     RENEW_URL:
@@ -1359,6 +1363,15 @@ constants.CA.TOP_GUIDES = defaults(
 constants.US.TOP_GUIDES = defaults(
   constants.US.TOP_GUIDES,
   constants.EU.TOP_GUIDES,
+);
+
+constants.CA.SECTION_AVAILABILITY = defaults(
+  constants.CA.SECTION_AVAILABILITY,
+  constants.EU.SECTION_AVAILABILITY,
+);
+constants.US.SECTION_AVAILABILITY = defaults(
+  constants.US.SECTION_AVAILABILITY,
+  constants.EU.SECTION_AVAILABILITY,
 );
 
 export default constants;

@@ -9,7 +9,7 @@ import { Environment } from '@ovh-ux/manager-config';
 
 attachPreloader(Environment.getUserLanguage());
 
-bootstrapApplication('dedicated').then(({ region, message }) => {
+bootstrapApplication('dedicated').then(({ message, region }) => {
   if (message) {
     displayMessage(message, Environment.getUserLanguage());
   }
