@@ -1,5 +1,6 @@
 import { filter, get, head, map, mapValues } from 'lodash-es';
 
+import { Environment } from '@ovh-ux/manager-config';
 import { BillingService, User } from '@ovh-ux/manager-models';
 
 const parseErrors = (data) =>
@@ -103,7 +104,7 @@ export default /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
             serviceType: 'aapi',
           })
           .then(({ data }) => parseErrors(data)),
-      tags: /* @ngInject */ (hub) => hub.tags.data,
+      tags: /* @ngInject */ () => get(Environment.getUser(), 'tags', []),
     },
   });
 

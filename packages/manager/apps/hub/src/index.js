@@ -13,7 +13,7 @@ import { BILLING_REDIRECTIONS } from './constants';
 
 attachPreloader(Environment.getUserLanguage());
 
-bootstrapApplication('hub').then(({ region, message }) => {
+bootstrapApplication('hub').then(({ message, region }) => {
   if (message) {
     displayMessage(message, Environment.getUserLanguage());
   }

@@ -8,6 +8,7 @@ import 'angular-translate';
 import uiRouter, { RejectType } from '@uirouter/angularjs';
 import ngOvhUiRouterLineProgress from '@ovh-ux/ng-ui-router-line-progress';
 import ngUiRouterBreadcrumb from '@ovh-ux/ng-ui-router-breadcrumb';
+import trustedNic from '@ovh-ux/manager-trusted-nic';
 
 import { isString, get, has } from 'lodash-es';
 
@@ -63,6 +64,7 @@ angular
       ovhManagerBanner,
       ngOvhPaymentMethod,
       'pascalprecht.translate',
+      trustedNic,
       'ui.bootstrap',
       uiRouter,
       ...get(__NG_APP_INJECTIONS__, Environment.getRegion(), []),
