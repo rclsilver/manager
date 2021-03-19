@@ -1,4 +1,5 @@
 import angular from 'angular';
+import '@ovh-ux/manager-core';
 import ngAtInternet from '@ovh-ux/ng-at-internet';
 import component from './component';
 
@@ -12,7 +13,13 @@ import userInfos from './user-infos';
 const moduleName = 'ovhManagerAccountSidebar';
 
 angular
-  .module(moduleName, [ngAtInternet, paymentMean, shortcuts, userInfos])
+  .module(moduleName, [
+    ngAtInternet,
+    'ovhManagerCore',
+    paymentMean,
+    shortcuts,
+    userInfos,
+  ])
   .component('ovhManagerAccountSidebar', component)
   .run(/* @ngTranslationsInject:json ./translations */);
 

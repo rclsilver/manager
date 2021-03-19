@@ -3,12 +3,20 @@ import { buildURL } from '@ovh-ux/ufrontend/url-builder';
 
 export default class OvhManagerAccountSidebarCtrl {
   /* @ngInject */
-  constructor($q, $rootScope, $translate, atInternet, RedirectionService) {
+  constructor(
+    $q,
+    $rootScope,
+    $translate,
+    atInternet,
+    RedirectionService,
+    SessionService,
+  ) {
     this.$q = $q;
     this.$rootScope = $rootScope;
     this.$translate = $translate;
     this.atInternet = atInternet;
     this.RedirectionService = RedirectionService;
+    this.SessionService = SessionService;
 
     this.$rootScope.$on('ovh::sidebar::toggle', () => {
       this.isSidebarVisible = !this.isSidebarVisible;
@@ -27,17 +35,20 @@ export default class OvhManagerAccountSidebarCtrl {
   }
 
   $onInit() {
-    if (!this.me) {
-      this.me = Environment.getUser();
-    }
-
     this.hasChatbot = false;
-    return this.$translate
-      .refresh()
-      .then(() => this.getLinks())
-      .then((links) => {
-        this.links = links;
-      });
+    return (!this.me
+      ? this.SessionService.getUser().then((me) => {
+          this.me = me;
+        })
+      : this.$q.when(0)
+    ).then(() =>
+      this.$translate
+        .refresh()
+        .then(() => this.getLinks())
+        .then((links) => {
+          this.links = links;
+        }),
+    );
   }
 
   openChatbot() {
