@@ -10,14 +10,7 @@ angular.module('Module.license').controller('LicenseCtrl', [
   '$timeout',
   'constants',
   'ovhFeatureFlipping',
-  (
-    $scope,
-    $state,
-    License,
-    $timeout,
-    constants,
-    ovhFeatureFlipping,
-  ) => {
+  ($scope, $state, License, $timeout, constants, ovhFeatureFlipping) => {
     $scope.licencesTableLoading = false;
     $scope.licenses = null;
     $scope.licenseTypes = {
