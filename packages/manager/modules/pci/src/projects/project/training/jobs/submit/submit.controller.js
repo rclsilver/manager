@@ -74,6 +74,8 @@ export default class PciTrainingJobsSubmitController {
       container: form.container.$viewValue.name,
       mountPath: form.mountPath.$viewValue,
       permission: form.permission.$viewValue,
+      prefix: form.prefix.$viewValue,
+      cache: form.cache.$viewValue,
     };
 
     this.job.volumes.push(volume);
