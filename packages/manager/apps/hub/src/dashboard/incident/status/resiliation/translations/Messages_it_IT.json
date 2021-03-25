@@ -1,0 +1,9 @@
+{
+  "manager_hub_incident_status_resiliation": "Resiliate service",
+  "manager_hub_incident_status_resiliation_description": "Are you sure you want to resiliate your service {{ serviceName }}?",
+  "manager_hub_incident_status_resiliate_success_enagegd": "Your request has been submitted and will be processed shortly. You can follow up your service status on \"My services\" page.",
+  "manager_hub_incident_status_resiliate_success": "Your request has been submitted and will be processed shortly.x",
+  "manager_hub_incident_status_resiliate_error": "An error has occured while requesting for resiliation.",
+  "manager_hub_incident_status_resiliate_confirm": "Confirm",
+  "manager_hub_incident_status_resiliate_cancel": "Cancel"
+}

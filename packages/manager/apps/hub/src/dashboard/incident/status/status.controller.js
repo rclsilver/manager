@@ -2,6 +2,11 @@ import { Environment } from '@ovh-ux/manager-config';
 import { DATACENTERS, FAQ, REGIONS } from './status.constants';
 
 export default class StatusController {
+  /* @ngInject */
+  constructor($translate) {
+    this.$translate = $translate;
+  }
+
   $onInit() {
     this.filtersOptions = {
       status: {

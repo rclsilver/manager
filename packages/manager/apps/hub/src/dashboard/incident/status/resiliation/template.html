@@ -1,0 +1,15 @@
+<oui-modal
+    primary-label="{{ 'manager_hub_incident_status_resiliate_confirm' | translate }}"
+    secondary-label="{{ 'manager_hub_incident_status_resiliate_cancel' | translate}}"
+    secondary-action="$ctrl.goBack()"
+    primary-action="$ctrl.resiliate()"
+    on-dismiss="$ctrl.goBack()"
+    heading="{{ :: 'manager_hub_incident_status_resiliation' | translate }}"
+>
+    <p
+        data-translate="manager_hub_incident_status_resiliation_description"
+        data-translate-values="{
+        serviceName: $ctrl.service.serviceName
+    }"
+    ></p>
+</oui-modal>
