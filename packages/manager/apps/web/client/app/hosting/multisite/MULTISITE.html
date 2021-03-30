@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover multisite">
                         <thead>
                             <tr>
                                 <th
@@ -96,7 +96,7 @@
                                     data-translate="hosting_tab_DOMAINS_table_header_firewall"
                                 ></th>
                                 <th
-                                    class="text-center"
+                                    class="text-center min-width-col"
                                     scope="col"
                                     data-translate="hosting_tab_DOMAINS_table_header_cdn"
                                     data-ng-if="hosting.hasCdn"
@@ -106,7 +106,7 @@
                                     scope="col"
                                     data-translate="hosting_tab_DOMAINS_table_header_ssl"
                                 ></th>
-                                <th class="min-width text-right">
+                                <th class="min-width text-right col-sticky">
                                     <button
                                         class="btn btn-icon"
                                         type="button"
@@ -196,11 +196,23 @@
                                         class="oui-badge"
                                         data-ng-bind="(('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate) == 'hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn)? domain.cdn: ('hosting_tab_DOMAINS_table_cdn_state_' + domain.cdn | translate)"
                                         data-ng-class="{
+                                            'align-bottom': canEditCdn(domain),
                                             'oui-badge_success': domain.cdn === 'ACTIVE',
                                             'oui-badge_error': domain.cdn === 'NONE'
                                         }"
                                     >
                                     </span>
+                                    <oui-button
+                                        class="float-right"
+                                        size="s"
+                                        variant="secondary"
+                                        on-click="goToCdnConfiguration(domain)"
+                                        data-ng-if="canEditCdn(domain)"
+                                    >
+                                        <span
+                                            class="oui-icon oui-icon-pen"
+                                        ></span>
+                                    </oui-button>
                                 </td>
                                 <td class="text-center">
                                     <span
@@ -211,7 +223,7 @@
                                     >
                                     </span>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center col-sticky">
                                     <button
                                         class="oui-action-button"
                                         type="button"

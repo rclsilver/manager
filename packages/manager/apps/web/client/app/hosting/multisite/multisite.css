@@ -1,0 +1,14 @@
+table.multisite th.min-width-col {
+  min-width: 9rem;
+}
+
+table.multisite .col-sticky {
+  right: 0;
+  position: sticky;
+}
+
+table.multisite td.col-sticky {
+  background-color: inherit;
+  border-bottom: 1px solid #bef1ff;
+  border-top: 1px solid #bef1ff;
+}
