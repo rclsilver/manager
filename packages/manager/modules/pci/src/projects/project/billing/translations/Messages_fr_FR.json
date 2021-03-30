@@ -7,5 +7,14 @@
   "cpbc_monthly_header_description": "Forfaits et proratas",
   "cpbc_hourly_header": "Facturation à venir",
   "cpbc_hourly_header_description": "Consommation à la demande du mois courant",
-  "cpb_error_message": "Oups, nous n'arrivons pas à récupérer toutes les informations."
+  "cpb_error_message": "Oups, nous n'arrivons pas à récupérer toutes les informations.",
+  "cpbc_billing_control_consumption_current_monthly": "Consommation actuelle",
+  "cpbc_billing_control_consumption_forecast": "Estimation de la prochaine facture",
+  "cpbc_billing_control_consumption_product": "Produit",
+  "cpbc_billing_control_consumption_current": "Consommation",
+  "cpbc_billing_control_consumption_detail_forecast": "Estimation",
+  "cpbc_billing_control_consumption_unit_price": "Prix unitaire",
+  "cpbc_billing_control_consumption_usage": "Utilisation",
+  "cpbc_billing_control_consumption_unit_price_hour": "{{price}}/heure",
+  "cpbc_billing_control_consumption_unit_price_month": "{{price}}/mois"
 }

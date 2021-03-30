@@ -2,7 +2,6 @@ import angular from 'angular';
 import '@ovh-ux/ng-ovh-api-wrappers';
 import 'ovh-api-services';
 
-import billing from './billing';
 import flavorBilling from './flavor-billing';
 import flavorsList from './flavors-list';
 import guidesHeader from './guides-header';
@@ -15,7 +14,6 @@ import sshKeys from './instance/ssh-keys';
 const moduleName = 'ovhManagerPciComponentsProject';
 
 angular.module(moduleName, [
-  billing,
   flavorBilling,
   flavorsList,
   guidesHeader,

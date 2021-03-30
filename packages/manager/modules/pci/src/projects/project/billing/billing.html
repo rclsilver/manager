@@ -4,24 +4,18 @@
 >
     <oui-header-tabs>
         <oui-header-tabs-item
-            data-href="{{:: BillingCtrl.billingLink }}"
-            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.billingLink"
+            data-href="{{:: $ctrl.billingLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.billingLink"
             ><span data-translate="cpbc_tab_consumption"></span>
-            <span data-translate="cpbc_tab_consumption"></span>
         </oui-header-tabs-item>
         <oui-header-tabs-item
-            data-href="{{:: BillingCtrl.estimateLink }}"
-            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.estimateLink"
-            ><span data-translate="cpbc_tab_forecast"></span>
-        </oui-header-tabs-item>
-        <oui-header-tabs-item
-            data-href="{{:: BillingCtrl.historyLink }}"
-            data-active="BillingCtrl.currentActiveLink() === BillingCtrl.historyLink"
+            data-href="{{:: $ctrl.historyLink }}"
+            data-active="$ctrl.currentActiveLink() === $ctrl.historyLink"
             ><span data-translate="cpbc_tab_history"></span>
         </oui-header-tabs-item>
     </oui-header-tabs>
     <oui-guide-menu data-text="{{:: 'pci_project_guides_header' | translate }}">
-        <oui-guide-menu-item href="{{ BillingCtrl.guideUrl }}" data-external>
+        <oui-guide-menu-item href="{{ $ctrl.guideUrl }}" data-external>
             <span data-translate="pci_project_guides_header_all_guides"></span>
         </oui-guide-menu-item>
     </oui-guide-menu>
@@ -29,51 +23,163 @@
 
 <div class="mt-4">
     <cui-message-container
-        data-messages="BillingCtrl.messages"
+        data-messages="$ctrl.messages"
     ></cui-message-container>
 </div>
 
 <div class="py-4" data-ui-view>
-    <h2 data-translate="cpbc_tab_consumption"></h2>
-    <div class="text-center" data-ng-if="BillingCtrl.loading">
-        <oui-spinner></oui-spinner>
-    </div>
-    <div data-ng-if="!BillingCtrl.loading">
-        <div class="row">
-            <div class="col-xl-6 mb-4">
-                <oui-tile heading="{{ ::'cpbc_monthly_header' | translate }}">
-                    <p class="oui-tile__legend">
-                        <span
-                            data-translate="cpbc_monthly_header_description"
-                        ></span>
-                        &nbsp;(<span
-                            data-ng-bind="BillingCtrl.data.totals.monthly.total.toFixed(2) + ' ' + BillingCtrl.data.totals.currencySymbol"
-                        ></span
-                        >)
-                    </p>
-                    <monthly-resource-list
-                        resources="BillingCtrl.data"
-                    ></monthly-resource-list>
-                </oui-tile>
-            </div>
-            <div class="col-xl-6">
-                <oui-tile heading="{{ ::'cpbc_hourly_header' | translate }}">
-                    <p class="oui-tile__legend">
-                        <span
-                            data-translate="cpbc_hourly_header_description"
-                        ></span>
-                        &nbsp;(<span
-                            data-ng-bind="BillingCtrl.data.totals.hourly.total.toFixed(2) + ' ' + BillingCtrl.data.totals.currencySymbol"
-                        ></span
-                        >)
-                    </p>
-                    <hourly-resource-list
-                        data-resources="BillingCtrl.data"
-                        data-switch-to-monthly-billing="BillingCtrl.switchToMonthly(instance)"
-                    >
-                    </hourly-resource-list>
-                </oui-tile>
+    <div class="row mb-3">
+        <div class="col-md-3 px-0">
+            <div class="oui-box text-right h-100">
+                <h4
+                    class="oui-box__heading"
+                    data-translate="cpbc_billing_control_consumption_current_monthly"
+                ></h4>
+                <p
+                    class="oui-heading_3"
+                    data-ng-bind="$ctrl.consumption.price.text"
+                ></p>
             </div>
         </div>
+        <div class="col-md-3 px-0">
+            <div class="oui-box text-right h-100">
+                <h4
+                    class="oui-box__heading"
+                    data-translate="cpbc_billing_control_consumption_forecast"
+                ></h4>
+                <p
+                    class="oui-heading_3"
+                    data-ng-bind="$ctrl.forecast.price.text"
+                ></p>
+            </div>
+        </div>
+    </div>
+    <div class="oui-datagrid-responsive">
+        <table class="oui-datagrid">
+            <thead>
+                <tr>
+                    <th
+                        class="oui-datagrid__header oui-datagrid__header_s"
+                    ></th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_product"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_unit_price"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_usage"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_current"
+                        ></span>
+                    </th>
+                    <th class="oui-datagrid__header">
+                        <span
+                            data-translate="cpbc_billing_control_consumption_forecast"
+                        ></span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    class="oui-datagrid__row oui-datagrid__row_expandable"
+                    data-ng-repeat-start="$row in $ctrl.consumption.priceByPlanFamily track by $index"
+                    data-ng-click="$ctrl.expandRow($row)"
+                >
+                    <td class="oui-datagrid__cell oui-datagrid__cell_s">
+                        <button
+                            class="oui-button oui-button_ghost oui-button_s"
+                            type="button"
+                        >
+                            <span
+                                class="oui-icon oui-icon-chevron-"
+                                data-ng-class="{
+                                    'oui-icon-chevron-up': $ctrl.isExpanded[$row.planFamily],
+                                    'oui-icon-chevron-down': !$ctrl.isExpanded[$row.planFamily]
+                                }"
+                            ></span>
+                        </button>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <span data-ng-bind="$row.planFamily"></span>
+                    </td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell"></td>
+                    <td class="oui-datagrid__cell">
+                        <span data-ng-bind="$row.price.text"></span>
+                    </td>
+                    <td class="oui-datagrid__cell">
+                        <span data-ng-bind="$row.forecast.price.text"></span>
+                    </td>
+                </tr>
+                <tr
+                    class="oui-datagrid__row"
+                    data-ng-show="$ctrl.isExpanded[$row.planFamily]"
+                    data-ng-repeat-end
+                    data-ng-repeat="detail in $row.details track by $index"
+                    aria-hidden="false"
+                >
+                    <td
+                        class="oui-datagrid__cell oui-datagrid__cell_s"
+                        data-ng-class="{
+                        'border-0': !$last
+                    }"
+                    ></td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                        'border-0': !$last
+                    }"
+                    >
+                        <span data-ng-bind="detail.uniqueId"></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                        'border-0': !$last
+                    }"
+                    >
+                        <span
+                            data-translate="{{:: 'cpbc_billing_control_consumption_unit_price_' + detail.catalogPrice.unit }}"
+                            data-translate-values="{
+                                price: detail.catalogPrice.value
+                            }"
+                        ></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                        'border-0': !$last
+                    }"
+                    >
+                        <span data-ng-bind="detail.quantity"></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                        'border-0': !$last
+                    }"
+                    >
+                        <span data-ng-bind="detail.price.text"></span>
+                    </td>
+                    <td
+                        class="oui-datagrid__cell"
+                        data-ng-class="{
+                        'border-0': !$last
+                    }"
+                    >
+                        <span data-ng-bind="detail.forecast.price.text"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
