@@ -1,15 +1,17 @@
 import get from 'lodash/get';
 import isArray from 'lodash/isArray';
 import remove from 'lodash/remove';
+import startCase from 'lodash/startCase';
 
 angular.module('Module.license').controller('LicenseCtrl', [
   '$scope',
   '$state',
   'License',
   '$timeout',
+  '$translate',
   'constants',
   'Billing.URLS',
-  ($scope, $state, License, $timeout, constants, billingUrls) => {
+  ($scope, $state, License, $timeout, $translate, constants, billingUrls) => {
     $scope.licencesTableLoading = false;
     $scope.licenses = null;
     $scope.licenseTypes = {
@@ -141,5 +143,12 @@ angular.module('Module.license').controller('LicenseCtrl', [
     };
 
     $scope.resetAction();
+
+    $scope.formatName = (license) => {
+      const formattedVersion = startCase(license.version.replace(/-|_/g, ' '));
+      return `${$translate.instant(
+        `license_designation_${license.type}`,
+      )} ${formattedVersion}`;
+    };
   },
 ]);
