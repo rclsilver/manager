@@ -24,13 +24,11 @@ export default class {
   }
 
   $onInit() {
-    console.log(this.me);
     this.isLoadingService = true;
     this.paymentMethod = null;
     this.model = {
       duration: null,
       engagement: null,
-      paymentMethod: null,
     };
     return this.$q
       .all({
@@ -138,23 +136,10 @@ export default class {
     return this.BillingCommitmentService.commit(
       this.service,
       this.model.engagement,
-      this.model.paymentMethod,
     )
-      .then((order) => {
-        if (order) {
-          this.$window.open(order.url, '_blank');
-        }
-
-        return this.goBack(
-          `${this.$translate.instant('billing_commitment_success')}${
-            order
-              ? this.$translate.instant('billing_commitment_success_purchase', {
-                  url: order.url,
-                })
-              : ''
-          }`,
-        );
-      })
+      .then(() =>
+        this.goBack(this.$translate.instant('billing_commitment_success')),
+      )
       .catch((error) => {
         this.error = error.data?.message || error.message;
       });
