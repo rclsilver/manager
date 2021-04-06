@@ -12,6 +12,7 @@ angular.module('App').controller(
       Alerter,
       constants,
       DedicatedServerFeatureAvailability,
+      ovhFeatureFlipping,
       Server,
     ) {
       this.$scope = $scope;
@@ -21,10 +22,11 @@ angular.module('App').controller(
       this.Server = Server;
       this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
       this.Alerter = Alerter;
+      this.ovhFeatureFlipping = ovhFeatureFlipping;
     }
 
     $onInit() {
-      this.$scope.loading = false;
+      this.loading = false;
       this.$scope.server = this.$scope.currentActionData;
       this.manualRefund = this.DedicatedServerFeatureAvailability.hasDedicatedServerManualRefund();
       this.serviceInfos = get(this.$scope, 'serviceInfos', null);
@@ -35,6 +37,25 @@ angular.module('App').controller(
       this.$scope.submitCancelSubscription = this.submitCancelSubscription.bind(
         this,
       );
+      this.terminationUnavailable = false;
+      this.getTerminationAvailability();
+    }
+
+    getTerminationAvailability() {
+      this.loading = true;
+      return this.ovhFeatureFlipping
+        .checkFeatureAvailability('dedicated-server:terminate')
+        .then((featureAvailability) => {
+          this.terminationUnavailable = !featureAvailability.isFeatureAvailable(
+            'dedicated-server:terminate',
+          );
+        })
+        .catch(() => {
+          this.terminationUnavailable = true;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     }
 
     /**
