@@ -8,6 +8,7 @@ export default class DialplanCtrl {
     $q,
     $timeout,
     $translate,
+    atInternet,
     autoScrollOnToggle,
     TucToast,
     TUC_UI_SORTABLE_HELPERS,
@@ -18,6 +19,7 @@ export default class DialplanCtrl {
     this.TucToast = TucToast;
     this.tucUiSortableHelpers = TUC_UI_SORTABLE_HELPERS;
     this.autoScrollOnToggle = autoScrollOnToggle;
+    this.atInternet = atInternet;
   }
 
   $onInit() {
@@ -151,6 +153,10 @@ export default class DialplanCtrl {
 
   onEditDialplanBtnClick() {
     this.popoverStatus.isOpen = true;
+    this.atInternet.trackClick({
+      name: 'ccs::dialplan::change-ccs-options',
+      type: 'navigation',
+    });
   }
 
   onCancelEditDialplan() {
