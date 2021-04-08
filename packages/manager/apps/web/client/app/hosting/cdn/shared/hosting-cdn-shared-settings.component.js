@@ -6,7 +6,9 @@ export default {
   template,
   bindings: {
     domainOptions: '<',
+    cdnRange: '<',
     cdnDetails: '<',
+    cdnOptionTypeEnum: '<',
     availableOptions: '<',
     serviceName: '<',
     domainName: '<',
@@ -16,6 +18,8 @@ export default {
     displayUpdateCacheRuleModal: '<',
     displayConfirmSettingsModal: '<',
     displayLeaveSettingsModal: '<',
+    guideLinkHref: '<',
+    openCorsList: '<',
     trackClick: '<',
   },
 };

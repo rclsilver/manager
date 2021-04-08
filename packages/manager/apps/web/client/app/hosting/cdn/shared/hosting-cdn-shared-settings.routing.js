@@ -35,6 +35,15 @@ export default /* @ngInject */ ($stateProvider) => {
           domainName,
         ).then(({ data }) => data),
 
+      cdnRange: /* @ngInject */ ($transition$, cdnProperties) =>
+        cdnProperties.type
+          .split('cdn-')[1]
+          .replace('-', ' ')
+          .toUpperCase(),
+
+      guideLinkHref: /* @ngInject */ (CORE_URLS, user) =>
+        CORE_URLS.guides.cdn[user.ovhSubsidiary] || CORE_URLS.guides.cdn.GB,
+
       availableOptions: /* @ngInject */ (
         HostingCdnSharedService,
         serviceName,
@@ -56,6 +65,25 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.hosting.dashboard.cdn.shared.leaveSettings', {
           model: params,
         }),
+
+      openCorsList: /* @ngInject */ ($state) => (cors) =>
+        $state.go('app.hosting.dashboard.cdn.shared.cors', {
+          cors,
+        }),
+
+      cdnOptionTypeEnum: /* @ngInject */ ($http) =>
+        $http
+          .get('/hosting/web.json')
+          .then(({ data }) => data)
+          .then((schema) =>
+            schema.models['cdn.OptionTypeEnum'].enum.reduce(
+              (options, option) => ({
+                [option.toUpperCase()]: option,
+                ...options,
+              }),
+              {},
+            ),
+          ),
 
       trackClick: /* @ngInject */ (atInternet) => (hit) => {
         atInternet.trackClick({
