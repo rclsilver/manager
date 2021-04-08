@@ -1,6 +1,6 @@
 {
   "name": "@ovh-ux/manager-hub-app",
-  "version": "3.9.0",
+  "version": "3.10.2",
   "private": true,
   "description": "OVHcloud Dashboard control panel.",
   "repository": {
@@ -39,8 +39,8 @@
     "@ovh-ux/ng-ovh-contracts": "^4.0.2",
     "@ovh-ux/ng-ovh-feature-flipping": "^1.0.2",
     "@ovh-ux/ng-ovh-http": "^5.0.1",
-    "@ovh-ux/ng-ovh-order-tracking": "^1.1.0",
-    "@ovh-ux/ng-ovh-payment-method": "^7.0.11 || ^8.0.0",
+    "@ovh-ux/ng-ovh-order-tracking": "^1.1.1",
+    "@ovh-ux/ng-ovh-payment-method": "^8.0.0",
     "@ovh-ux/ng-ovh-proxy-request": "^2.0.1",
     "@ovh-ux/ng-ovh-request-tagger": "^1.1.0",
     "@ovh-ux/ng-ovh-sso-auth": "^4.4.0",
@@ -52,7 +52,7 @@
     "@ovh-ux/ng-ui-router-layout": "^4.0.2",
     "@ovh-ux/ng-ui-router-line-progress": "^1.2.4",
     "@ovh-ux/ufrontend": "^1.1.1",
-    "@ovh-ux/ui-kit": "^4.4.4",
+    "@ovh-ux/ui-kit": "^4.5.0",
     "@uirouter/angularjs": "^1.0.23",
     "angular": "^1.7.5",
     "angular-animate": "^1.7.5",

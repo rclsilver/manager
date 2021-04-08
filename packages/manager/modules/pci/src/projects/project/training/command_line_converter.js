@@ -1,5 +1,5 @@
 function convertJobSpecToCliCommand(jobSpec) {
-  const baseCmdArray = ['job run', `--name ${jobSpec.name}`];
+  let baseCmdArray = ['job run', `--name ${jobSpec.name}`];
 
   if (jobSpec.resources.gpu > 0) {
     baseCmdArray.push(`--gpu ${jobSpec.resources.gpu}`);
@@ -8,18 +8,22 @@ function convertJobSpecToCliCommand(jobSpec) {
   }
 
   if (jobSpec.volumes?.length > 0) {
-    jobSpec.volumes
-      .map(({ container, region, prefix, mountPath, permission, cache }) => {
-        const prefixStr = prefix ? `:/${prefix}` : '';
-        const cacheStr = cache ? ':cache' : '';
-        return `--volume ${container}@${region}${prefixStr}:${mountPath}:${permission}${cacheStr}`;
-      })
-      .forEach((x) => baseCmdArray.push(x));
+    baseCmdArray = baseCmdArray.concat(
+      jobSpec.volumes.map(
+        ({ container, region, prefix, mountPath, permission, cache }) => {
+          const prefixStr = prefix ? `:/${prefix}` : '';
+          const cacheStr = cache ? ':cache' : '';
+          return `--volume ${container}@${region}${prefixStr}:${mountPath}:${permission}${cacheStr}`;
+        },
+      ),
+    );
   }
 
   if (jobSpec.labels) {
-    Object.keys(jobSpec.labels).forEach((key) =>
-      baseCmdArray.push(`--label ${key}=${jobSpec.labels[key]}`),
+    baseCmdArray = baseCmdArray.concat(
+      Object.keys(jobSpec.labels).map(
+        (key) => `--label ${key}=${jobSpec.labels[key]}`,
+      ),
     );
   }
 
@@ -27,7 +31,7 @@ function convertJobSpecToCliCommand(jobSpec) {
 
   if (jobSpec.command && jobSpec.command.length > 0) {
     baseCmdArray.push('--');
-    jobSpec.command.forEach((x) => baseCmdArray.push(x));
+    baseCmdArray = baseCmdArray.concat(jobSpec.command);
   }
 
   return baseCmdArray.join(' \\\n\t');

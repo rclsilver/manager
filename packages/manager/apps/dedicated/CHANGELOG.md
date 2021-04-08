@@ -1,3 +1,234 @@
+# [16.16.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.15.1...@ovh-ux/manager-dedicated@16.16.0) (2021-04-06)
+
+
+### Bug Fixes
+
+* **dedicated:** add ola tracking ([b496a2f](https://github.com/ovh/manager/commit/b496a2fef252ab0db85cdecb11632367bd5369ae))
+* **dedicated:** dashboard hardware tile integration ([3ca6335](https://github.com/ovh/manager/commit/3ca6335a2554390622074813840a800821c623fc))
+* **dedicated:** disable os install if ola is configured ([ee93dd5](https://github.com/ovh/manager/commit/ee93dd5efe31354f2792ee06ecb0ddc0541e5ea7))
+* **dedicated:** ola reset modal refresh ([73903ac](https://github.com/ovh/manager/commit/73903acb6edd80acc56780c726d8ba4ba01c83ed))
+* **i18n:** add missing translations [CDS 648] ([f823204](https://github.com/ovh/manager/commit/f82320482057281fefd559697d7b9c855f76db4a))
+* **i18n:** add missing translations [CDS 764] ([e9cf1de](https://github.com/ovh/manager/commit/e9cf1de2721539f649907e1fdfb0824a6d035794))
+* **i18n:** add missing translations [CDS 766] ([8bdaae7](https://github.com/ovh/manager/commit/8bdaae7224f276db0941da96f6a67f5fe7e3ade4))
+* **i18n:** add missing translations [CDS 872] ([a796478](https://github.com/ovh/manager/commit/a79647892590fe5bce321188aa2b2c307abb60db))
+* **i18n:** add missing translations [CDS 885] ([9434739](https://github.com/ovh/manager/commit/9434739f3f625bdf5d3e363e283bb5e7a1c1d0b2))
+* **upgrade:** add flipping on technical upgrade ([8bbbc00](https://github.com/ovh/manager/commit/8bbbc004e51936599f7617046252d63703267b75))
+
+
+### Features
+
+* **dedicated:** add technical details tile to dashboard ([cf13e4e](https://github.com/ovh/manager/commit/cf13e4eec183096c78976dd36fe5a713cfcdf3e8))
+* **dedicated:** hgv2 & ola integration #MANAGER-6116 ([e9d184f](https://github.com/ovh/manager/commit/e9d184f119d3cbd6754c7c2653180b0325341792)), closes [#MANAGER-6116](https://github.com/ovh/manager/issues/MANAGER-6116)
+* **dedicated:** ola enhancements ([cae8bbe](https://github.com/ovh/manager/commit/cae8bbe5632f8d3de02a87f57f25f03343f89cb1)), closes [#MANAGER-5264](https://github.com/ovh/manager/issues/MANAGER-5264) [#MANAGER-5494](https://github.com/ovh/manager/issues/MANAGER-5494)
+* **dedicated:** server dashboard ola message formatting ([0d2fa2c](https://github.com/ovh/manager/commit/0d2fa2c1fcc0fa37464523c63dc12e4363e56e7f))
+* **hgv2:** add manual upgrade with ticket ([7d69257](https://github.com/ovh/manager/commit/7d692575d5ab978397bdc292befaec4b602a3f65))
+
+
+
+## [16.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.15.0...@ovh-ux/manager-dedicated@16.15.1) (2021-04-06)
+
+
+### Bug Fixes
+
+* avoid duplicate token in url ([#4685](https://github.com/ovh/manager/issues/4685)) ([d717855](https://github.com/ovh/manager/commit/d717855ae5f9cdb433d46e899b6f2e94d3728ab6))
+
+
+
+# [16.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.3...@ovh-ux/manager-dedicated@16.15.0) (2021-04-02)
+
+
+### Bug Fixes
+
+* **billing.payment:** rename DLP to Startup Program ([#4674](https://github.com/ovh/manager/issues/4674)) ([5837448](https://github.com/ovh/manager/commit/5837448fba07fc9ab7472587e9751490cd8f479e))
+
+
+### Features
+
+* **billing.payment.ovhaccount:** revamp refund ([#4664](https://github.com/ovh/manager/issues/4664)) ([79b48cd](https://github.com/ovh/manager/commit/79b48cd34b6b312a47c7f003c89f3466a6c6da18))
+
+
+
+## [16.14.3](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.2...@ovh-ux/manager-dedicated@16.14.3) (2021-04-01)
+
+
+### Bug Fixes
+
+* fix terminate redirection ([#4669](https://github.com/ovh/manager/issues/4669)) ([c33c704](https://github.com/ovh/manager/commit/c33c70436af3a01c8e7bd08b14ec29ce0b895b45))
+
+
+
+## [16.14.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.1...@ovh-ux/manager-dedicated@16.14.2) (2021-04-01)
+
+
+### Bug Fixes
+
+* **dedicated-cloud:** fix terminate resiliation ([427e93e](https://github.com/ovh/manager/commit/427e93e095634b9abba3466831b512ec4c543f39))
+
+
+
+## [16.14.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.14.0...@ovh-ux/manager-dedicated@16.14.1) (2021-03-31)
+
+
+### Bug Fixes
+
+* **billing.history:** add billId to see debt ([#4658](https://github.com/ovh/manager/issues/4658)) ([c780905](https://github.com/ovh/manager/commit/c78090586ccf6da90b5be23a5a886353ace33921))
+
+
+
+# [16.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.13.0...@ovh-ux/manager-dedicated@16.14.0) (2021-03-31)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 851] ([6406b5d](https://github.com/ovh/manager/commit/6406b5d82ffaad8109b5ce561caf37ac1e3c18a9))
+
+
+### Features
+
+* add webpaas ([#4385](https://github.com/ovh/manager/issues/4385)) ([a7fdb93](https://github.com/ovh/manager/commit/a7fdb938d0a85c64d702e06cd00445e223fa3671))
+* **dedicated:** add sidebar entry for web paas ([3126755](https://github.com/ovh/manager/commit/3126755ace084c0f6fc31e3570f2f62c064c8509))
+
+
+
+# [16.13.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.12.0...@ovh-ux/manager-dedicated@16.13.0) (2021-03-31)
+
+
+### Bug Fixes
+
+* allow resiliation on service that can be engaged ([#4639](https://github.com/ovh/manager/issues/4639)) ([75c7f24](https://github.com/ovh/manager/commit/75c7f2460e7971d7f71824ad98144e04e1221264))
+
+
+### Features
+
+* update wording for new billing status ([#4640](https://github.com/ovh/manager/issues/4640)) ([9a780cd](https://github.com/ovh/manager/commit/9a780cddb253e225874cd2f21e5fc3d9d5fa0839))
+
+
+
+# [16.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.11.1...@ovh-ux/manager-dedicated@16.12.0) (2021-03-29)
+
+
+### Bug Fixes
+
+* **billing.ovhaccount:** enable cash out for DE subsidiary ([8b89fe2](https://github.com/ovh/manager/commit/8b89fe2f222804705d86185db4f024b232df68bd))
+* **billing.payment.ovh-account:** update retrieve wording ([#4620](https://github.com/ovh/manager/issues/4620)) ([2580561](https://github.com/ovh/manager/commit/258056171209fea9b2572aa56c8b813e047b8037))
+
+
+### Features
+
+* **billing.payment:** add description to voucher movements ([#4623](https://github.com/ovh/manager/issues/4623)) ([d19b6b5](https://github.com/ovh/manager/commit/d19b6b5389f61cea82584f8ea4e71b48d060e934))
+
+
+
+## [16.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.11.0...@ovh-ux/manager-dedicated@16.11.1) (2021-03-26)
+
+
+### Bug Fixes
+
+* **ip:** broadcast event on promise callback ([#4624](https://github.com/ovh/manager/issues/4624)) ([c063884](https://github.com/ovh/manager/commit/c063884cade97e476786749ada2b08953826522e))
+
+
+
+# [16.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.10.0...@ovh-ux/manager-dedicated@16.11.0) (2021-03-26)
+
+
+### Bug Fixes
+
+* avoid duplicate module name ([21ed860](https://github.com/ovh/manager/commit/21ed860d1d0a67b0c4bd4914415e9dfd4e3d847c))
+* **ip.order:** hide breadcrumb ([92d2238](https://github.com/ovh/manager/commit/92d2238b972cb59e76492c94a8b55958a5c04c0c))
+
+
+### Features
+
+* **billing.refunds:** add link to prepaid account ([#4611](https://github.com/ovh/manager/issues/4611)) ([8ed77ad](https://github.com/ovh/manager/commit/8ed77ad48d681bb0e3ef60c8361dc6ee2f37654e))
+
+
+### Reverts
+
+* Revert "fix: remove non needed component (#4563)" ([3b86fff](https://github.com/ovh/manager/commit/3b86fff879336db05c982b18e9563175caaf4be4)), closes [#4563](https://github.com/ovh/manager/issues/4563)
+
+
+
+# [16.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.9.1...@ovh-ux/manager-dedicated@16.10.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* remove non needed component ([#4563](https://github.com/ovh/manager/issues/4563)) ([b3aa13f](https://github.com/ovh/manager/commit/b3aa13f8b1e7f32328f992b1d0195de7473a0c15))
+* **billing:** hide breadcrumb for US ([db365d6](https://github.com/ovh/manager/commit/db365d6f41707bc84c3026b9d08397feb7e3243a))
+* **billing.autorenew:** replace Server call with /services ([#4526](https://github.com/ovh/manager/issues/4526)) ([4159de4](https://github.com/ovh/manager/commit/4159de4d5a6464e36301a344b07370055473f524))
+* **billing.autorenew:** update autorenew tracking ([#4476](https://github.com/ovh/manager/issues/4476)) ([b717e1a](https://github.com/ovh/manager/commit/b717e1ab03dd5e5c823a92534fd6cf8901c0a068))
+* **dedicated-cloud.options:** provide breadcrumb value ([60cf671](https://github.com/ovh/manager/commit/60cf67179c3e7502811fbcf82030e0a18866c75c))
+* **dedicated-server:** add breadcrumb for commitment ([4cdfc48](https://github.com/ovh/manager/commit/4cdfc4891f516cd8cae0bed7d10225395919ad2c))
+* **dedicated-server.firewall:** fix breadcrumb translations ([8dca824](https://github.com/ovh/manager/commit/8dca824e1378f4a818add4b89364cea7f4450c98))
+* **dedicated.server:** inject missing translations ([1942e77](https://github.com/ovh/manager/commit/1942e77fc5e7a5788aa36ac533a9a46a62c6b9e6))
+* **dedicated.server:** set active tab ([9462915](https://github.com/ovh/manager/commit/94629157b0177783b4a599af9b1cef13d91ecf2f))
+* **housing.dashboard:** use import for controller ([f28082e](https://github.com/ovh/manager/commit/f28082ed6d15c62f8a4c0b1d860426b4ece864ae))
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+* **i18n:** add missing translations [CDS 861] ([f42c3ed](https://github.com/ovh/manager/commit/f42c3edeeb30a0307c245d35a42ec7a8e428a1d4))
+* **ip:** fix agora order ([6bed14c](https://github.com/ovh/manager/commit/6bed14c0a9003670ace53ff05b4b4e3fb3d41cf3))
+* **ip:** hide breadcrumb on listing page ([6910091](https://github.com/ovh/manager/commit/6910091bc90bf975efaa4362059eca666096b7ee))
+* **ip.organisation:** load in $onInit ([8c3bbc3](https://github.com/ovh/manager/commit/8c3bbc38769e4852954bb51b8f82ebd35a544a0d))
+* **license:** fix typo ([d2b6c3e](https://github.com/ovh/manager/commit/d2b6c3e16eddc555a04c0d8259176f1fdc0d43e0))
+* **managed-baremetal.users:** fix actions ([c4b4df5](https://github.com/ovh/manager/commit/c4b4df5ca8cdfccd1d52e3eb5b3abd9878d770ff))
+* **payment-method:** set user locale ([562b0ab](https://github.com/ovh/manager/commit/562b0ab2bac676a7b16382abc227a713bbfde150))
+* update url for users modal ([b8b0275](https://github.com/ovh/manager/commit/b8b0275c8b2c98970add9455fe51560340a9e814))
+* **managed-baremetal.servicepack:** fix translation injection ([8768cf5](https://github.com/ovh/manager/commit/8768cf59d4cbc5f7a6b899066cdd818d3ee9b7a0))
+* **server:** fix install import ([2def1c3](https://github.com/ovh/manager/commit/2def1c3d9ebae801295fd7ad0c04740370241862))
+* add missing breadcrumb translations ([188100d](https://github.com/ovh/manager/commit/188100d236b217b2994c66ab5881601ca3336a07))
+* add missing translations ([a668534](https://github.com/ovh/manager/commit/a6685349173116cd8ae4748ad43ba7a6ff5769a3))
+* **popover:** make component standalone by declaring its own style ([14548df](https://github.com/ovh/manager/commit/14548dfe69bc7ab7d138d4ccdc78d9b8d8375420))
+
+
+### Features
+
+* **billing.main:** change tab order ([9955194](https://github.com/ovh/manager/commit/99551949e324db3605309759f1f660e608fe8725))
+* **cdn:** add breadcrumb ([bd20407](https://github.com/ovh/manager/commit/bd204074011ad814bc6c5edf9b3681e21793e969))
+* **cdn:** add listing page ([777e53e](https://github.com/ovh/manager/commit/777e53e34c2ef28a615964aca30c2726345f68b9))
+* **dedicated-cloud:** add breadcrumb ([8ae433a](https://github.com/ovh/manager/commit/8ae433a3e063be6abbd938cc14d07201e266aebc))
+* **dedicated-cloud:** add listing page ([b9b7744](https://github.com/ovh/manager/commit/b9b7744a1ec4afc193ec076597e416e8509a9230))
+* **dedicated.billing.autorenew:** add servicetype to tracking ([#4549](https://github.com/ovh/manager/issues/4549)) ([2f943d0](https://github.com/ovh/manager/commit/2f943d0afffa4e66499d1d7c33a496d007226156))
+* **dedicated.housing:** add breadcrumb ([ab00a12](https://github.com/ovh/manager/commit/ab00a127cd40cc6c8a0d510b67426355f6e88b29))
+* **dedicated.housing:** add listing page ([ab144df](https://github.com/ovh/manager/commit/ab144df2aab6727d315b86b3d4dbb391f1b8fc20))
+* **dedicated.nas:** add breadcrumb ([05cdce0](https://github.com/ovh/manager/commit/05cdce006afb24826a1f9bbe5fc6502cec86922e))
+* **dedicated.nas.partition:** add intermediate state ([1af9cdd](https://github.com/ovh/manager/commit/1af9cdd3175dd078173e363f35074423b33c2cb8))
+* **dedicated.server:** add breadcrumb ([c1145c9](https://github.com/ovh/manager/commit/c1145c942ea4da8ac2e89278a35cb24ea3b3ee65))
+* **dedicated.server:** replace link with oui-back-button ([5382dae](https://github.com/ovh/manager/commit/5382dae40a42cb5592aef1c547f05f09fa9f5bdb))
+* **ip:** add breadcrumb ([7e4781c](https://github.com/ovh/manager/commit/7e4781c5d70f7e99b38d140fe048f6565c99698a))
+* **license:** add breadcrumb ([82a6068](https://github.com/ovh/manager/commit/82a6068f53637dfde30f85eb3d233f4eae4f844d))
+* **managed-baremetal:** add breadcrumb ([fdc9b96](https://github.com/ovh/manager/commit/fdc9b96244985916b19dfae1b0180f75f07bb46a))
+* **managed-baremetal:** add listing page ([4241826](https://github.com/ovh/manager/commit/4241826fef40f7628fe08cdf55f6c4046ff7133f))
+* **nas:** add listing page ([e1c5c7b](https://github.com/ovh/manager/commit/e1c5c7bae29fee735011b7f4afa50168dbebcd65))
+* move Exchange service to wuc ([61488d1](https://github.com/ovh/manager/commit/61488d142e821ffdc6194ff04dfa93ed53663cff))
+
+
+
+## [16.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.9.0...@ovh-ux/manager-dedicated@16.9.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* **billing.payment:** avoid duplicate tab name ([#4605](https://github.com/ovh/manager/issues/4605)) ([387ac21](https://github.com/ovh/manager/commit/387ac215d0a2db4b91bbbb5b80f0d0f13755396a))
+
+
+
+# [16.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.8.0...@ovh-ux/manager-dedicated@16.9.0) (2021-03-24)
+
+
+### Bug Fixes
+
+* **billing.credits:** fix translations ([7be03e2](https://github.com/ovh/manager/commit/7be03e28089366a466baa57b032e285c3c0887cc))
+* **i18n:** add missing translations [CDS 863] ([4769306](https://github.com/ovh/manager/commit/4769306f6ca4603a97534e63e43169ac6d517c6d))
+
+
+### Features
+
+* **billing:** move refunds from payment means to bills ([097a46f](https://github.com/ovh/manager/commit/097a46fd2293b179a4baf3be2bbb4e00db0bfdb0))
+* **billing.credits:** revamp ([545e7b5](https://github.com/ovh/manager/commit/545e7b5a9ff5c19fcce67cd6d93c30b196626443))
+* **billing.payment:** remove transaction tab ([353cd96](https://github.com/ovh/manager/commit/353cd961d937c1c45fe486ee22655fd25ca4f57f))
+* change tab order ([66f505f](https://github.com/ovh/manager/commit/66f505fb808bb571e68b51c9eb5cc0c76ee8111a))
+
+
+
 # [16.8.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-dedicated@16.7.0...@ovh-ux/manager-dedicated@16.8.0) (2021-03-19)
 
 

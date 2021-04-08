@@ -1,3 +1,27 @@
+## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.2.0...@ovh-ux/manager-nasha@2.2.1) (2021-03-30)
+
+
+### Bug Fixes
+
+* **nasha.new:** inject translations ([#4622](https://github.com/ovh/manager/issues/4622)) ([e19a5c8](https://github.com/ovh/manager/commit/e19a5c84c6d46701f9eb5c09fc76159a064b1ddb))
+
+
+
+# [2.2.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.1.5...@ovh-ux/manager-nasha@2.2.0) (2021-03-25)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 808] ([ba2c7cb](https://github.com/ovh/manager/commit/ba2c7cb71125d9e47400184953b6614030a1a2c6))
+
+
+### Features
+
+* add breadcrumb ([d46ef88](https://github.com/ovh/manager/commit/d46ef886f72d89b19ddc5a7308d6598591d17408))
+* **nasha:** add listing page ([01d8a98](https://github.com/ovh/manager/commit/01d8a980205c5934ef59dfac9f35a6a3da875d3e))
+
+
+
 ## [2.1.5](https://github.com/ovh/manager/compare/@ovh-ux/manager-nasha@2.1.4...@ovh-ux/manager-nasha@2.1.5) (2021-03-02)
 
 

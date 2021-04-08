@@ -1,3 +1,52 @@
+## [3.10.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.10.1...@ovh-ux/manager-hub-app@3.10.2) (2021-04-06)
+
+
+### Bug Fixes
+
+* **i18n:** add missing translations [CDS 885] ([9434739](https://github.com/ovh/manager/commit/9434739f3f625bdf5d3e363e283bb5e7a1c1d0b2))
+
+
+
+## [3.10.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.10.0...@ovh-ux/manager-hub-app@3.10.1) (2021-04-03)
+
+
+### Bug Fixes
+
+* update content ([#4681](https://github.com/ovh/manager/issues/4681)) ([adc13c0](https://github.com/ovh/manager/commit/adc13c0d4c467eb84cc2f433c3e7bb67652f7555))
+
+
+
+# [3.10.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.9.2...@ovh-ux/manager-hub-app@3.10.0) (2021-03-31)
+
+
+### Features
+
+* **hub:** add web paas translations ([8f5e443](https://github.com/ovh/manager/commit/8f5e4432709bfccc359b0e71de27e4a951dd3c79))
+
+
+
+## [3.9.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.9.1...@ovh-ux/manager-hub-app@3.9.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **dashboard:** avoid error if partial error on payment tile ([#4480](https://github.com/ovh/manager/issues/4480)) ([059b19e](https://github.com/ovh/manager/commit/059b19e776628db73d192bfada974bfb56f03ec2))
+* **i18n:** add missing translations [CDS 859] ([810e235](https://github.com/ovh/manager/commit/810e2352b0195caf0362a50499d04eb0b2942cd5))
+* **i18n:** add missing translations [CDS 861] ([f42c3ed](https://github.com/ovh/manager/commit/f42c3edeeb30a0307c245d35a42ec7a8e428a1d4))
+* **i18n:** add missing translations [CDS 864] ([db265a6](https://github.com/ovh/manager/commit/db265a6ab958b0afc3a7c297fa890d6c11ed250c))
+* **payment-method:** set user locale ([562b0ab](https://github.com/ovh/manager/commit/562b0ab2bac676a7b16382abc227a713bbfde150))
+
+
+
+## [3.9.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.9.0...@ovh-ux/manager-hub-app@3.9.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* **incident.banner:** update content in incident banner ([#4599](https://github.com/ovh/manager/issues/4599)) ([6201e56](https://github.com/ovh/manager/commit/6201e56a8fb7b62347015540b838194d96fdc317))
+
+
+
 # [3.9.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-hub-app@3.8.1...@ovh-ux/manager-hub-app@3.9.0) (2021-03-19)
 
 

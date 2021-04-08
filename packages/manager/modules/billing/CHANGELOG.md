@@ -1,3 +1,37 @@
+# [2.4.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.3.0...@ovh-ux/manager-billing@2.4.0) (2021-04-06)
+
+
+### Features
+
+* **dedicated:** hgv2 & ola integration #MANAGER-6116 ([e9d184f](https://github.com/ovh/manager/commit/e9d184f119d3cbd6754c7c2653180b0325341792)), closes [#MANAGER-6116](https://github.com/ovh/manager/issues/MANAGER-6116)
+
+
+
+# [2.3.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.2.2...@ovh-ux/manager-billing@2.3.0) (2021-03-31)
+
+
+### Bug Fixes
+
+* **billing.cancellation-form:** update wording ([#4641](https://github.com/ovh/manager/issues/4641)) ([56f8b7d](https://github.com/ovh/manager/commit/56f8b7d8ee041b264390efb09aded69b61c46fb6))
+* allow resiliation on service that can be engaged ([#4639](https://github.com/ovh/manager/issues/4639)) ([75c7f24](https://github.com/ovh/manager/commit/75c7f2460e7971d7f71824ad98144e04e1221264))
+
+
+### Features
+
+* update wording for new billing status ([#4640](https://github.com/ovh/manager/issues/4640)) ([9a780cd](https://github.com/ovh/manager/commit/9a780cddb253e225874cd2f21e5fc3d9d5fa0839))
+
+
+
+## [2.2.2](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.2.1...@ovh-ux/manager-billing@2.2.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* **dedicated-server:** add breadcrumb for commitment ([4cdfc48](https://github.com/ovh/manager/commit/4cdfc4891f516cd8cae0bed7d10225395919ad2c))
+* update @ovh-ux/manager-core ([d9898c0](https://github.com/ovh/manager/commit/d9898c09018bba60a10f2684912ec780beb41a7a))
+
+
+
 ## [2.2.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-billing@2.2.0...@ovh-ux/manager-billing@2.2.1) (2021-03-02)
 
 

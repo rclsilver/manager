@@ -1,3 +1,21 @@
+# [4.12.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.11.1...@ovh-ux/manager-public-cloud@4.12.0) (2021-03-31)
+
+
+### Features
+
+* **project:** details why project is not available anymore ([#3137](https://github.com/ovh/manager/issues/3137)) ([8cd18d7](https://github.com/ovh/manager/commit/8cd18d79ed84a1d0b7b41c893eae88a1ac1f4a04))
+
+
+
+## [4.11.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.11.0...@ovh-ux/manager-public-cloud@4.11.1) (2021-03-25)
+
+
+### Bug Fixes
+
+* **payment-method:** set user locale ([562b0ab](https://github.com/ovh/manager/commit/562b0ab2bac676a7b16382abc227a713bbfde150))
+
+
+
 # [4.11.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-public-cloud@4.10.1...@ovh-ux/manager-public-cloud@4.11.0) (2021-03-17)
 
 
