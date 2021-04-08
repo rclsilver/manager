@@ -234,6 +234,11 @@ export default /* @ngInject */ ($stateProvider) => {
         $state.go('app.dedicated-server.server.dashboard.upgrade', {
           selectedUpgrade,
         }),
+      isUpgradable: /* @ngInject */ ($http, server) =>
+        $http
+          .get(`/services/${server.serviceId}/upgrade`)
+          .then(({ data }) => (data.length > 0 ? data : null))
+          .catch(() => null),
       upgradeWithTicketAvailable: /* @ngInject */ (ovhFeatureFlipping) =>
         ovhFeatureFlipping
           .checkFeatureAvailability('dedicated-server:upgradeWithTicket')
