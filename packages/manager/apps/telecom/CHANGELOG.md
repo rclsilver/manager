@@ -1,3 +1,21 @@
+## [13.15.1](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.15.0...@ovh-ux/manager-telecom@13.15.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* **deps:** add missing @ovh-ux/manager-advices dependency ([#4707](https://github.com/ovh/manager/issues/4707)) ([05e080c](https://github.com/ovh/manager/commit/05e080c78122057d900462d8c75526400545d36e))
+
+
+
+# [13.15.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.14.0...@ovh-ux/manager-telecom@13.15.0) (2021-04-07)
+
+
+### Features
+
+* add batch 2 advices ([#4597](https://github.com/ovh/manager/issues/4597)) ([69e5fe5](https://github.com/ovh/manager/commit/69e5fe5bfe813f4ef0e63e1acd8f128dc4590b73))
+
+
+
 # [13.14.0](https://github.com/ovh/manager/compare/@ovh-ux/manager-telecom@13.13.0...@ovh-ux/manager-telecom@13.14.0) (2021-03-25)
 
 

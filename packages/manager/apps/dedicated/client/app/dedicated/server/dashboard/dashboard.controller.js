@@ -3,7 +3,12 @@ import head from 'lodash/head';
 import map from 'lodash/map';
 import some from 'lodash/some';
 
-import { URLS, WEATHERMAP_URL } from './dashboard.constants';
+import {
+  URLS,
+  WEATHERMAP_URL,
+  COMMIT_IMPRESSION_TRACKING_DATA,
+  RECOMMIT_IMPRESSION_TRACKING_DATA,
+} from './dashboard.constants';
 import { NEW_RANGE } from '../details/server.constants';
 
 export default class DedicatedServerDashboard {
@@ -14,6 +19,7 @@ export default class DedicatedServerDashboard {
     $state,
     $stateParams,
     $translate,
+    atInternet,
     Alerter,
     constants,
     DedicatedServerFeatureAvailability,
@@ -24,6 +30,7 @@ export default class DedicatedServerDashboard {
     this.$state = $state;
     this.$stateParams = $stateParams;
     this.$translate = $translate;
+    this.atInternet = atInternet;
     this.Alerter = Alerter;
     this.constants = constants;
     this.DedicatedServerFeatureAvailability = DedicatedServerFeatureAvailability;
@@ -32,6 +39,8 @@ export default class DedicatedServerDashboard {
 
   $onInit() {
     this.URLS = URLS;
+    this.COMMIT_IMPRESSION_TRACKING_DATA = COMMIT_IMPRESSION_TRACKING_DATA;
+    this.RECOMMIT_IMPRESSION_TRACKING_DATA = RECOMMIT_IMPRESSION_TRACKING_DATA;
 
     this.servicesStateLinks = {
       weathermap: WEATHERMAP_URL[this.user.country],
@@ -289,5 +298,28 @@ export default class DedicatedServerDashboard {
 
   onBillingInformationError(error) {
     return this.Alerter.error(error, 'server_dashboard_alert');
+  }
+
+  openOsInstallation(type) {
+    if (type === 'progress') {
+      this.trackPage(`${this.trackingPrefix}::system-installation-progress`);
+    } else {
+      this.trackPage(`${this.trackingPrefix}::system-install`);
+    }
+    return this.dedicatedServer.$scope.setAction(
+      `installation/${type}/dedicated-server-installation-${type}`,
+      {
+        server: this.server,
+        serverCtrl: this.dedicatedServer,
+        user: this.user,
+      },
+    );
+  }
+
+  trackPage(name) {
+    this.atInternet.trackPage({
+      name,
+      type: 'navigation',
+    });
   }
 }
