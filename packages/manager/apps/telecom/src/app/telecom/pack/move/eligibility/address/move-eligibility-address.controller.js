@@ -134,7 +134,7 @@ export default class {
   }
 
   /**
-   * Copper eligibility by address
+   * Copper eligibility by address4
    */
   copperEligibilityByAddress() {
     if (this.isReseller) {
@@ -145,12 +145,7 @@ export default class {
           streetCode: this.address.street.streetCode,
           streetNumber: this.address.streetNumber,
         })
-        .then((res) => {
-          const elig = {
-            result: res.result,
-          };
-          return elig;
-        })
+        .then(({ result }) => ({ result }))
         .catch((error) => {
           this.loading = false;
           this.TucToast.error(error);
@@ -161,12 +156,7 @@ export default class {
         streetCode: this.address.street.streetCode,
         streetNumber: this.address.streetNumber,
       })
-      .then((res) => {
-        const elig = {
-          result: res.result,
-        };
-        return elig;
-      })
+      .then(({ result }) => ({ result }))
       .catch((error) => {
         this.loading = false;
         this.TucToast.error(error);
