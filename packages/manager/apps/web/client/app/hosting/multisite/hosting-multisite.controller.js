@@ -9,11 +9,21 @@ import isEmpty from 'lodash/isEmpty';
 import map from 'lodash/map';
 import union from 'lodash/union';
 
+import { CDN_ACTIVE } from './hosting-multisite.constants';
+
+const CDN_STATISTICS_PERIOD = {
+  DAY: 'day',
+  MONTH: 'month',
+  WEEK: 'week',
+  YEAR: 'year',
+};
+
 angular
   .module('App')
   .controller(
     'HostingTabDomainsCtrl',
     (
+      $http,
       $scope,
       $q,
       $state,
@@ -30,6 +40,7 @@ angular
       hostingSSLCertificate,
       hostingSSLCertificateType,
       Alerter,
+      WucChartjsFactory,
     ) => {
       atInternet.trackPage({ name: 'web::hosting::multisites' });
 
@@ -56,6 +67,13 @@ angular
       };
 
       $scope.certificateTypes = hostingSSLCertificateType.constructor.getCertificateTypes();
+
+      $scope.periods = Object.values(CDN_STATISTICS_PERIOD).map((period) => ({
+        label: $translate.instant(
+          `hosting_multisite_statistics_period_${period}`,
+        ),
+        value: period,
+      }));
 
       function sendTrackClick(hit) {
         atInternet.trackClick({
@@ -182,7 +200,7 @@ angular
 
       $scope.canEditCdn = function canEditCdn(domain) {
         return (
-          domain.cdn === 'ACTIVE' &&
+          domain.cdn === CDN_ACTIVE &&
           $scope.cdnProperties.version === 'cdn-hosting'
         );
       };
@@ -462,6 +480,22 @@ angular
       $scope.$on('$destroy', () => {
         HostingDomain.killAllPolling();
       });
+
+      $scope.getChartJsInstance = function getChartJsInstance(configuration) {
+        return new WucChartjsFactory(configuration);
+      };
+
+      $scope.getStatistics = function getStatistics(domain, period) {
+        return $http
+          .get(
+            `/hosting/web/${
+              $scope.hosting.serviceName
+            }/cdn/domain/${domain}/statistics${
+              period ? `?period=${period}` : ''
+            }`,
+          )
+          .then(({ data }) => data);
+      };
 
       startPolling();
     },
