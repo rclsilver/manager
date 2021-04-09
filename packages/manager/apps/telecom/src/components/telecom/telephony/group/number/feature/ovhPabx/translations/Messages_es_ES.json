@@ -103,6 +103,7 @@
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_no_selected": "Aucun menu sélectionné",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu": "Ajouter un menu interactif",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_new": "Nouveau menu",
+  "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_already_added": "Menu déjà ajoutés",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_new_name": "Mon menu interactif {{ index }}",
   "telephony_number_feature_ovh_pabx_step_rule_ivr_menu_add_menu_explain": "Commencez l'édition d'un menu interractif en cliquant sur ce bouton !",
   "telephony_number_feature_ovh_pabx_step_rule_playback": "Jouer un son",
