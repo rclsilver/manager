@@ -134,28 +134,32 @@ export default class {
   }
 
   /**
-   * Copper eligibility by address4
+   * Test address for copper eligibility
+   * @returns Promise
    */
-  copperEligibilityByAddress() {
+  testAddress() {
     if (this.isReseller) {
       // If current offer is a reseller offer,
       // launch eligibility test address for partners (reseller)
-      return this.OvhApiConnectivityEligibility.v6()
-        .testAddressPartners(this.$scope, {
+      return this.OvhApiConnectivityEligibility.v6().testAddressPartners(
+        this.$scope,
+        {
           streetCode: this.address.street.streetCode,
           streetNumber: this.address.streetNumber,
-        })
-        .then(({ result }) => ({ result }))
-        .catch((error) => {
-          this.loading = false;
-          this.TucToast.error(error);
-        });
+        },
+      );
     }
-    return this.OvhApiConnectivityEligibility.v6()
-      .testAddress(this.$scope, {
-        streetCode: this.address.street.streetCode,
-        streetNumber: this.address.streetNumber,
-      })
+    return this.OvhApiConnectivityEligibility.v6().testAddress(this.$scope, {
+      streetCode: this.address.street.streetCode,
+      streetNumber: this.address.streetNumber,
+    });
+  }
+
+  /**
+   * Copper eligibility by address
+   */
+  copperEligibilityByAddress() {
+    return this.testAddress()
       .then(({ result }) => ({ result }))
       .catch((error) => {
         this.loading = false;
