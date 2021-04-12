@@ -6,6 +6,7 @@ import keys from 'lodash/keys';
 import partition from 'lodash/partition';
 import reduce from 'lodash/reduce';
 import some from 'lodash/some';
+import orderBy from 'lodash/orderBy';
 
 import { IMAGE_ASSETS } from './images.constants';
 
@@ -42,11 +43,13 @@ export default class ImagesListController {
   }
 
   getImages() {
-    return this.PciProjectImages.getImages(this.serviceName).then((images) => {
-      this.images = images;
-      this.updateImages(images);
-      return images;
-    });
+    return this.PciProjectImages.getImages(this.serviceName)
+      .then((images) => orderBy(images, ['name'], ['desc']))
+      .then((images) => {
+        this.images = images;
+        this.updateImages(images);
+        return images;
+      });
   }
 
   updateImages(images) {
